@@ -1,9 +1,9 @@
 package starter;
-
+import java.applet.*;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
-import acm.graphics.GObject;
+import acm.graphics.*;
 
 public class MenuPane extends GraphicsPane {
 	private MainApplication program; // you will use program to get access to
@@ -13,8 +13,13 @@ public class MenuPane extends GraphicsPane {
 	public MenuPane(MainApplication app) {
 		super();
 		program = app;
-		rect = new GButton("Next", 200, 200, 200, 200);
-		rect.setFillColor(Color.RED);
+		GRect background = new GRect(0, 0, 1000, 1000);
+		background.setColor(Color.BLACK);
+		background.setFilled(true);
+		program.add(background);
+		
+		rect = new GButton("Start Game", 300, 350, 200, 100);
+		rect.setFillColor(Color.GREEN);
 	}
 
 	@Override
