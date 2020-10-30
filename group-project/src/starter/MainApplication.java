@@ -5,7 +5,7 @@ public class MainApplication extends GraphicsApplication {
 	public static final String MUSIC_FOLDER = "sounds";
 	private static final String[] SOUND_FILES = { "r2d2.mp3", "somethinlikethis.mp3" };
 
-	private SomePane somePane;
+	private FirstLevel startRoom;
 	private MenuPane menu;
 	private int count;
 
@@ -15,7 +15,7 @@ public class MainApplication extends GraphicsApplication {
 
 	public void run() {
 		System.out.println("Game has started!");
-		somePane = new SomePane(this);
+		startRoom = new FirstLevel(this);
 		menu = new MenuPane(this);
 		switchToMenu();
 	}
@@ -26,9 +26,9 @@ public class MainApplication extends GraphicsApplication {
 		switchToScreen(menu);
 	}
 
-	public void switchToSome() {
+	public void switchToFirst() {
 		playRandomSound();
-		switchToScreen(somePane);
+		switchToScreen(startRoom);
 	}
 
 	private void playRandomSound() {
