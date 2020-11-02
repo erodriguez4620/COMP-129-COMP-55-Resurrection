@@ -21,18 +21,11 @@ public class MainApplication extends GraphicsApplication {
 	}
 
 	public void switchToMenu() {
-		playRandomSound();
 		count++;
 		switchToScreen(menu);
 	}
 
 	public void switchToFirst() {
-		playRandomSound();
 		switchToScreen(startRoom);
-	}
-
-	private void playRandomSound() {
-		AudioPlayer audio = AudioPlayer.getInstance();
-		audio.playSound(MUSIC_FOLDER, SOUND_FILES[count % SOUND_FILES.length]);
 	}
 }
