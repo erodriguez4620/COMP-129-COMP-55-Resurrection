@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 
 import acm.graphics.*;
 
-public class MenuPane extends GraphicsPane {
+public class MenuPane extends CharacterInteraction {
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
 	private GButton rect;

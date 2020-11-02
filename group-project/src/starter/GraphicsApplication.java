@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import acm.program.GraphicsProgram;
 
 public abstract class GraphicsApplication extends GraphicsProgram {
-	private GraphicsPane curScreen;
+	private CharacterInteraction curScreen;
 	
 	public GraphicsApplication() {
 		super();
@@ -31,7 +31,7 @@ public abstract class GraphicsApplication extends GraphicsProgram {
 	 * will simply switch from making one pane that was currently
 	 * active, to making another one that is the active class.
 	 */
-	protected void switchToScreen(GraphicsPane newScreen) {
+	protected void switchToScreen(CharacterInteraction newScreen) {
 		if(curScreen != null) {
 			curScreen.hideContents();
 		}
