@@ -2,7 +2,7 @@ package starter;
 
 public enum EnemyType {
 GOBLIN, SLIME, BOSS;
-	public String getString() {
+	public String toString() {
 		switch (this) {
 		case GOBLIN: return "goblin";
 		case SLIME: return "slime";
