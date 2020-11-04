@@ -5,9 +5,9 @@ public enum ItemType {
 	
 	public String toString() {
 		switch(this) {
-			case WEAPON: return "weapon";
-			case POTION: return "potion";
-			case KEY: return "key";
+		case WEAPON: return "weapon";
+		case POTION: return "potion";
+		case KEY: return "key";
 		}
 		return "n/a";
 	}
