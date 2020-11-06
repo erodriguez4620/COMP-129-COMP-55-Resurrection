@@ -95,9 +95,9 @@ public class Enemy {
 		Enemy enemy2 = new Enemy(EnemyType.SLIME, space2, 20, 5, false);
 		Enemy enemy3 = new Enemy(EnemyType.GOBLIN, space3, 200, 25, true);
 		
-		System.out.println("The enemy spawned is: " + enemy1.toString() + " Their postion is: (" + space1.getRow() + ", " + space1.getCol() + ") Its HP is: " + enemy1.getEnemyHp() + " It hits for: " + enemy1.getDamage() + " Enemy is moving vertically: " + enemy1.getIsVertical());
-		System.out.println("The enemy spawned is: " + enemy2.toString() + " Their postion is: (" + space2.getRow() + ", " + space2.getCol() + ") Its HP is: " + enemy2.getEnemyHp() + " It hits for: " + enemy2.getDamage() + " Enemy is moving vertically: " + enemy2.getIsVertical());
-		System.out.println("The enemy spawned is: " + enemy3.toString() + " Their postion is: (" + space3.getRow() + ", " + space3.getCol() + ") Its HP is: " + enemy3.getEnemyHp() + " It hits for: " + enemy3.getDamage() + " Enemy is moving vertically: " + enemy3.getIsVertical());
+		System.out.println("The enemy spawned is: " + enemy1.toString() + " Their postion is: (" + space1.getX() + ", " + space1.getY() + ") Its HP is: " + enemy1.getEnemyHp() + " It hits for: " + enemy1.getDamage() + " Enemy is moving vertically: " + enemy1.getIsVertical());
+		System.out.println("The enemy spawned is: " + enemy2.toString() + " Their postion is: (" + space2.getX() + ", " + space2.getY() + ") Its HP is: " + enemy2.getEnemyHp() + " It hits for: " + enemy2.getDamage() + " Enemy is moving vertically: " + enemy2.getIsVertical());
+		System.out.println("The enemy spawned is: " + enemy3.toString() + " Their postion is: (" + space3.getX() + ", " + space3.getY() + ") Its HP is: " + enemy3.getEnemyHp() + " It hits for: " + enemy3.getDamage() + " Enemy is moving vertically: " + enemy3.getIsVertical());
 	}
 	
 }

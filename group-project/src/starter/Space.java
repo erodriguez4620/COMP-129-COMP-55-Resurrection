@@ -1,26 +1,26 @@
 package starter;
 
 public class Space {
-	int row;
-	int col;
-	public Space(int row, int col) {
-		this.row = row;
-		this.col = col;
+	int x;
+	int y;
+	public Space(int x, int y) {
+		this.x = x;
+		this.y = y;
 	}
 	
-	public int getRow() {
-		return row;
+	public int getX() {
+		return x;
 	}
 	
-	public int getCol() {
-		return col;
+	public int getY() {
+		return y;
 	}
 	
-	public void setRow(int val) {
-		row = val;
+	public void setX(int val) {
+		x = val;
 	}
 	
-	public void setCol(int val) {
-		col = val;
+	public void setY(int val) {
+		y = val;
 	}
 }
