@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public abstract class CharacterInteraction implements Interfaceable {
+	static boolean[] Keys = new boolean[4];
 	@Override
 	public abstract void showContents();
 
@@ -39,23 +40,54 @@ public abstract class CharacterInteraction implements Interfaceable {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
+		System.out.println("moused has been dragged ");
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
+		System.out.println("moused has moved ");
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getKeyCode() == KeyEvent.VK_W) {
+			Keys[0] = false;
+		System.out.println("W key pressed");
+		}
+		if(e.getKeyCode() == KeyEvent.VK_A) {
+			Keys[1] = false;
+		System.out.println("A key pressed");
+		}
+		if(e.getKeyCode() == KeyEvent.VK_S) {
+			Keys[2] = false;
+		System.out.println("S key pressed");{
+		}
+		if(e.getKeyCode() == KeyEvent.VK_D) {
+			Keys[3] = false;
+		System.out.println("D key pressed");
+			}
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-
+		if(e.getKeyCode() == KeyEvent.VK_W) {
+			Keys[0] = false;
+		System.out.println("W key pressed");
+		}
+		if(e.getKeyCode() == KeyEvent.VK_A) {
+			Keys[1] = false;
+		System.out.println("A key pressed");
+		}
+		if(e.getKeyCode() == KeyEvent.VK_S) {
+			Keys[2] = false;
+		System.out.println("S key pressed");{
+		}
+		if(e.getKeyCode() == KeyEvent.VK_D) {
+			Keys[3] = false;
+		System.out.println("D key pressed");
+			}
+		}
 	}
 
 	@Override
