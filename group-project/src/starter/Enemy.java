@@ -3,7 +3,7 @@ package starter;
 public class Enemy {
 
 	private EnemyType enemyName;
-	private Space position;
+	private int dx, dy;
 	private Item itemDrop;
 	
 	int enemyHP;
@@ -11,9 +11,10 @@ public class Enemy {
 	int attackRadius;
 	boolean isVertical;
 	
-	public Enemy(EnemyType enemyName, Space position,int enemyHP, int damage, boolean isVertical) {
+	public Enemy(EnemyType enemyName, int x, int y,int enemyHP, int damage, boolean isVertical) {
 		this.enemyName = enemyName;
-		this.position = position;
+		dx = x;
+		dy = y;
 		this.enemyHP = enemyHP;
 		this.damage = damage;
 		this.isVertical = isVertical;
@@ -29,8 +30,12 @@ public class Enemy {
 		return enemyName;
 	}
 
-	public Space getPosition() {
-		return position;
+	public int getEnemyXPosition() {
+		return dx;
+	}
+	
+	public int getEnemyYPosition() {
+		return dy;
 	}
 
 	public int getEnemyHp() {
@@ -51,8 +56,12 @@ public class Enemy {
 		this.enemyName = enemyName;
 	}
 
-	public void setPosition(Space position) {
-		this.position = position;
+	public void setEnemeyXPosition(int x) {
+		dx = x;
+	}
+	
+	public void setEnemeyYPosition(int y) {
+		dy = y;
 	}
 
 	public void setEnemyHp(int enemyHP) {
@@ -87,17 +96,13 @@ public class Enemy {
 	
 	//text based test
 	public static void main(String[] args) {
-		Space space1 = new Space(0, 100);
-		Space space2 = new Space(100, 200);
-		Space space3 = new Space(200, 300);
 		
-		Enemy enemy1 = new Enemy(EnemyType.GOBLIN, space1, 50, 15, true);
-		Enemy enemy2 = new Enemy(EnemyType.SLIME, space2, 20, 5, false);
-		Enemy enemy3 = new Enemy(EnemyType.GOBLIN, space3, 200, 25, true);
+		Enemy enemy1 = new Enemy(EnemyType.GOBLIN, 5, 5, 50, 15, true);
+		Enemy enemy2 = new Enemy(EnemyType.SLIME, 7, 4, 20, 5, false);
+		Enemy enemy3 = new Enemy(EnemyType.GOBLIN, 1, 7, 200, 25, true);
 		
-		System.out.println("The enemy spawned is: " + enemy1.toString() + " Their postion is: (" + space1.getX() + ", " + space1.getY() + ") Its HP is: " + enemy1.getEnemyHp() + " It hits for: " + enemy1.getDamage() + " Enemy is moving vertically: " + enemy1.getIsVertical());
-		System.out.println("The enemy spawned is: " + enemy2.toString() + " Their postion is: (" + space2.getX() + ", " + space2.getY() + ") Its HP is: " + enemy2.getEnemyHp() + " It hits for: " + enemy2.getDamage() + " Enemy is moving vertically: " + enemy2.getIsVertical());
-		System.out.println("The enemy spawned is: " + enemy3.toString() + " Their postion is: (" + space3.getX() + ", " + space3.getY() + ") Its HP is: " + enemy3.getEnemyHp() + " It hits for: " + enemy3.getDamage() + " Enemy is moving vertically: " + enemy3.getIsVertical());
+		System.out.println("The enemy spawned is: " + enemy1.toString() + " Their X postion is: (" + enemy1.getEnemyXPosition() + ") Their Y Position is: (" + enemy1.getEnemyYPosition() + ") Its HP is: " + enemy1.getEnemyHp() + " It hits for: " + enemy1.getDamage() + " Enemy is moving vertically: " + enemy1.getIsVertical());
+		System.out.println("The enemy spawned is: " + enemy2.toString() + " Their X postion is: (" + enemy2.getEnemyXPosition() + ") Their Y Position is: (" + enemy2.getEnemyYPosition() + ") Its HP is: " + enemy2.getEnemyHp() + " It hits for: " + enemy2.getDamage() + " Enemy is moving vertically: " + enemy2.getIsVertical());
+		System.out.println("The enemy spawned is: " + enemy3.toString() + " Their X postion is: (" + enemy3.getEnemyXPosition() + ") Their Y Position is: (" + enemy3.getEnemyYPosition() + ") Its HP is: " + enemy3.getEnemyHp() + " It hits for: " + enemy3.getDamage() + " Enemy is moving vertically: " + enemy3.getIsVertical());
 	}
-	
 }

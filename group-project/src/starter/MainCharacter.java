@@ -6,14 +6,6 @@ public class MainCharacter extends Rectangle {
 	private int dx, dy;
 	public int playerHP; //player's HP
 	private ItemType item; //what item the player is holding
-	Space player; //where the player will be
-	
-	
-	 public MainCharacter(ItemType item, int playerHP, Space player) {
-		this.item = item;
-		this.playerHP = playerHP;
-		this.player = player;
-	}
 	 
 	public MainCharacter(int x, int y, int width, int height, int dx, int dy) {
 			setBounds(x,y,width,height);
@@ -30,11 +22,14 @@ public class MainCharacter extends Rectangle {
 		return item;
 	}
 	
-	public Space getPlayer() {
-		return player;
+	public int getXPosPlayer() {
+		return dx;
+	}
+	
+	public int getYPosPlayer() {
+		return dy;
 	}
 
-	
 	//Setters
 	public void setPlayerHP(int playerHP) {
 		this.playerHP = playerHP;
@@ -44,8 +39,9 @@ public class MainCharacter extends Rectangle {
 		this.item = item;
 	}
 
-	public void setPlayer(Space player) {
-		this.player = player;
+	public void setPlayerPosition(int x, int y) {
+		dx = x;
+		dy = y;
 	}
 	
 	public void tick() {
