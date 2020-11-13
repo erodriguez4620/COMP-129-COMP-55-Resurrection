@@ -14,6 +14,12 @@ public class MainCharacter extends Rectangle {
 		this.playerHP = playerHP;
 		this.player = player;
 	}
+	 
+	public MainCharacter(int x, int y, int width, int height, int dx, int dy) {
+			setBounds(x,y,width,height);
+			this.dx = dx;
+			this.dy= dy;
+	}
 
 	//Getters
 	public int getPlayerHP() {
@@ -40,12 +46,6 @@ public class MainCharacter extends Rectangle {
 
 	public void setPlayer(Space player) {
 		this.player = player;
-	}
-	
-	public MainCharacter(int x, int y, int width, int height, int dx, int dy) {
-		setBounds(x,y,width,height);
-		 this.dx = dx;
-		 this.dy= dy;
 	}
 	
 	public void tick() {
