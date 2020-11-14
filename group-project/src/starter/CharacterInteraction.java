@@ -94,5 +94,14 @@ public abstract class CharacterInteraction implements Interfaceable {
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 	}
-
+	
+	public Enemy enemy;//Using this to make the function
+	public MainCharacter hero;
+	public void characterDealsDamage(Enemy enemy) {
+		enemy.setEnemyHp(enemy.getEnemyHp() - hero.getItem().getValuePoint());
+	}
+	
+	public void enemyDealsDamage(Enemy enemy) {
+		hero.setPlayerHP(hero.getPlayerHP() - enemy.getDamage());
+	}
 }
