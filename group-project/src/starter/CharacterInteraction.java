@@ -1,6 +1,9 @@
 package starter;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /* File: GraphicsPane.java
  * -----------------------
  * Like you did with your own graphics programs, simply
@@ -15,40 +18,34 @@ package starter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public abstract class CharacterInteraction implements Interfaceable {
+public class CharacterInteraction implements ActionListener {
 	static boolean[] Keys = new boolean[4];
-	@Override
-	public abstract void showContents();
-
-	@Override
-	public abstract void hideContents();
-
-	@Override
+	
+	public CharacterInteraction(MainCharacter hero, Enemy enemy) {
+		this.hero = hero;
+		this.enemy = enemy;
+	}
+	
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
 	public void mouseDragged(MouseEvent e) {
 		System.out.println("moused has been dragged ");
 	}
 
-	@Override
 	public void mouseMoved(MouseEvent e) {
 		System.out.println("moused has moved ");
 	}
 
-	@Override
 	public void keyPressed(KeyEvent e) {
 		
 		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)  {
@@ -69,7 +66,6 @@ public abstract class CharacterInteraction implements Interfaceable {
 		}
 	}
 
-	@Override
 	public void keyReleased(KeyEvent e) {
 		
 		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)  {
@@ -90,7 +86,6 @@ public abstract class CharacterInteraction implements Interfaceable {
 		}
 	}
 
-	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 	}
@@ -105,23 +100,30 @@ public abstract class CharacterInteraction implements Interfaceable {
 		hero.setPlayerHP(hero.getPlayerHP() - enemy.getDamage());
 	}
 	public void HeroMoveLeft() {
-		if (hero.getX() - 5 >= 0) {
-			hero.move(-5, 0);
+		if (hero.getXPosPlayer() - 5 >= 0) {
+			hero.tick(-5.0, 0);
 		}
 	}
 	public void HeroMoveRight() {
-	   if (hero.getX() + 5 <= 800) {
-		   hero.move(5, 0);
+	   if (hero.getXPosPlayer() + 5 <= 800) {
+		   hero.tick(5, 0);
 	   }
 	}
 	public void HeroMoveUp() {
-		if (hero.getY() - 5 >= 0) {
-			hero.move(0, -5);
+		if (hero.getYPosPlayer() - 5 >= 0) {
+			hero.tick(0, -5);
 		}
 	}
 	public void HeroMoveDown() {
-		if (hero.getY() + 5 <= 600) {
-			hero.move(0, 5);
+		if (hero.getYPosPlayer() + 5 <= 600) {
+			hero.tick(0, 5);
 		}
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

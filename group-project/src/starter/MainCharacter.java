@@ -2,32 +2,37 @@ package starter;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class MainCharacter extends Rectangle {	
+import acm.graphics.GImage;
+import acm.graphics.GRect;
+
+public class MainCharacter {	
 	private int dx, dy;
 	public int playerHP; //player's HP
-	private ItemType item; //what item the player is holding
-	 
-	public MainCharacter(int x, int y, int width, int height, int dx, int dy) {
-			setBounds(x,y,width,height);
-			this.dx = dx;
-			this.dy= dy;
+	private Item item; //what item the player is holding
+	private GImage character;
+	
+	public MainCharacter(double x, double y, int dx, int dy) {
+		character = new GImage ("hero.png", x, y);
+		item = new Item(ItemType.WEAPON, 10);
 	}
-
+	public boolean hasItem() {
+		return item != null;
+	}
 	//Getters
 	public int getPlayerHP() {
 		return playerHP;
 	}
 
-	public ItemType getItem() {
+	public Item getItem() {
 		return item;
 	}
 	
-	public int getXPosPlayer() {
-		return dx;
+	public double getXPosPlayer() {
+		return character.getX();
 	}
 	
-	public int getYPosPlayer() {
-		return dy;
+	public double getYPosPlayer() {
+		return character.getY();
 	}
 
 	//Setters
@@ -35,21 +40,22 @@ public class MainCharacter extends Rectangle {
 		this.playerHP = playerHP;
 	}
 	
-	public void setItem(ItemType item) {
+	public void setItem(Item item) {
 		this.item = item;
 	}
 
-	public void setPlayerPosition(int x, int y) {
-		dx = x;
-		dy = y;
+	public void setPlayerPosition(double x, double y) {
+		character.setLocation(x, y);
 	}
 	
-	public void tick() {
-		this.x += dx;
-		this.y += dy;
+	public void tick(double x, double y) {
+		character.move(x, y);
 	}
-	void draw(Graphics g) {
-		g.fillRect(this.x, this.y, this.width, this.height); //drawing player as a box for now but we can user this as a hitbox
+//	void draw(Graphics g) { 
+//		g.fillRect(this.x, this.y, this.width, this.height); //drawing player as a box for now but we can user this as a hitbox
+//	}
+	public GImage getCharacter() {
+	return character;
 	}
 	
 	public void setDx(int dx) {

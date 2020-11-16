@@ -7,26 +7,30 @@ import java.awt.event.ActionListener;
 import acm.graphics.GImage;
 import acm.graphics.GObject;
 
-public class FirstLevel extends CharacterInteraction implements ActionListener {
+public class FirstLevel extends GraphicsPane implements ActionListener {
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
 	private GImage img;
 	static boolean[] Keys = new boolean[4];
 	private boolean spawningCycleOn = false;
-
+	private CharacterInteraction input;
+	private MainCharacter hero;
+	
 	public FirstLevel(MainApplication app) {
 		this.program = app;
 		img = new GImage("hero.png", 100, 100);
+		hero = new MainCharacter(100, 100, 10, 10);
+		input = new CharacterInteraction(hero, null);
 	}
 
 	@Override
 	public void showContents() {
-		program.add(img);
+		program.add(hero.getCharacter());
 	}
 
 	@Override
 	public void hideContents() {
-		program.remove(img);
+		program.removeAll();
 	}
 
 	@Override
@@ -37,6 +41,47 @@ public class FirstLevel extends CharacterInteraction implements ActionListener {
 		System.out.println("left mouse has been pressed");
 		}
 	}
+	
+public void keyPressed(KeyEvent e) {
+		
+		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)  {
+			System.out.println("Character is being moved up");
+			HeroMoveUp();
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
+			System.out.println("Character is being moved down");
+			HeroMoveDown();
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
+			System.out.println("Character is being moved left");
+			HeroMoveLeft();
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			System.out.println("Character is being moved right");
+			HeroMoveRight();
+		}
+	}
+
+public void HeroMoveLeft() {
+	if (hero.getXPosPlayer() - 5 >= 0) {
+		hero.tick(-5.0, 0);
+	}
+}
+public void HeroMoveRight() {
+   if (hero.getXPosPlayer() + 5 <= 800) {
+	   hero.tick(5, 0);
+   }
+}
+public void HeroMoveUp() {
+	if (hero.getYPosPlayer() - 5 >= 0) {
+		hero.tick(0, -5);
+	}
+}
+public void HeroMoveDown() {
+	if (hero.getYPosPlayer() + 5 <= 600) {
+		hero.tick(0, 5);
+	}
+}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
