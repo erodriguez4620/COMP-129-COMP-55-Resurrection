@@ -53,16 +53,16 @@ public abstract class CharacterInteraction implements Interfaceable {
 		int Key = e.getKeyCode();
 		
 		if (Key == KeyEvent.VK_W || Key == KeyEvent.VK_UP)  {
-			System.out.print("Character is beinged moved up");
+			System.out.println("Character is being moved up");
 		}
 		else if (Key == KeyEvent.VK_S || Key == KeyEvent.VK_DOWN) {
-			System.out.print("Character is beinged moved down");
+			System.out.println("Character is being moved down");
 		}
 		else if (Key == KeyEvent.VK_A || Key == KeyEvent.VK_LEFT) {
-			System.out.print("Character is beinged moved left");
+			System.out.println("Character is being moved left");
 		}
 		else if (Key == KeyEvent.VK_D || Key == KeyEvent.VK_RIGHT) {
-			System.out.print("Character is beinged moved right");
+			System.out.println("Character is being moved right");
 		}
 	}
 
@@ -71,16 +71,16 @@ public abstract class CharacterInteraction implements Interfaceable {
 		int Key = e.getKeyCode();
 		
 		if (Key == KeyEvent.VK_W || Key == KeyEvent.VK_UP)  {
-			System.out.print("Character is beinged moved up");
+			System.out.println("Character is being moved up");
 		}
 		else if (Key == KeyEvent.VK_S || Key == KeyEvent.VK_DOWN) {
-			System.out.print("Character is beinged moved down");
+			System.out.println("Character is being moved down");
 		}
 		else if (Key == KeyEvent.VK_A || Key == KeyEvent.VK_LEFT) {
-			System.out.print("Character is beinged moved left");
+			System.out.println("Character is being moved left");
 		}
 		else if (Key == KeyEvent.VK_D || Key == KeyEvent.VK_RIGHT) {
-			System.out.print("Character is beinged moved right");
+			System.out.println("Character is being moved right");
 		}
 	}
 
