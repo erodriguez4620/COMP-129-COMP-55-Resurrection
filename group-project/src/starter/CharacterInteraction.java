@@ -50,43 +50,37 @@ public abstract class CharacterInteraction implements Interfaceable {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_W) {
-			Keys[0] = false;
-		System.out.println("W key pressed");
+		int Key = e.getKeyCode();
+		
+		if (Key == KeyEvent.VK_W || Key == KeyEvent.VK_UP)  {
+			System.out.print("Character is beinged moved up");
 		}
-		if(e.getKeyCode() == KeyEvent.VK_A) {
-			Keys[1] = false;
-		System.out.println("A key pressed");
+		else if (Key == KeyEvent.VK_S || Key == KeyEvent.VK_DOWN) {
+			System.out.print("Character is beinged moved down");
 		}
-		if(e.getKeyCode() == KeyEvent.VK_S) {
-			Keys[2] = false;
-		System.out.println("S key pressed");{
+		else if (Key == KeyEvent.VK_A || Key == KeyEvent.VK_LEFT) {
+			System.out.print("Character is beinged moved left");
 		}
-		if(e.getKeyCode() == KeyEvent.VK_D) {
-			Keys[3] = false;
-		System.out.println("D key pressed");
-			}
+		else if (Key == KeyEvent.VK_D || Key == KeyEvent.VK_RIGHT) {
+			System.out.print("Character is beinged moved right");
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_W) {
-			Keys[0] = false;
-		System.out.println("W key pressed");
+		int Key = e.getKeyCode();
+		
+		if (Key == KeyEvent.VK_W || Key == KeyEvent.VK_UP)  {
+			System.out.print("Character is beinged moved up");
 		}
-		if(e.getKeyCode() == KeyEvent.VK_A) {
-			Keys[1] = false;
-		System.out.println("A key pressed");
+		else if (Key == KeyEvent.VK_S || Key == KeyEvent.VK_DOWN) {
+			System.out.print("Character is beinged moved down");
 		}
-		if(e.getKeyCode() == KeyEvent.VK_S) {
-			Keys[2] = false;
-		System.out.println("S key pressed");{
+		else if (Key == KeyEvent.VK_A || Key == KeyEvent.VK_LEFT) {
+			System.out.print("Character is beinged moved left");
 		}
-		if(e.getKeyCode() == KeyEvent.VK_D) {
-			Keys[3] = false;
-		System.out.println("D key pressed");
-			}
+		else if (Key == KeyEvent.VK_D || Key == KeyEvent.VK_RIGHT) {
+			System.out.print("Character is beinged moved right");
 		}
 	}
 

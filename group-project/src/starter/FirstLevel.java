@@ -10,10 +10,11 @@ public class FirstLevel extends CharacterInteraction {
 										// all of the GraphicsProgram calls
 	private GImage img;
 	static boolean[] Keys = new boolean[4];
+	private boolean spawningCycleOn = false;
 
 	public FirstLevel(MainApplication app) {
 		this.program = app;
-		img = new GImage("robot head.jpg", 100, 100);
+		img = new GImage("hero.png", 100, 100);
 	}
 
 	@Override
@@ -56,44 +57,36 @@ public class FirstLevel extends CharacterInteraction {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_W) {
-			Keys[0] = false;
-		System.out.println("W key pressed");
-		}
-		if(e.getKeyCode() == KeyEvent.VK_A) {
-			Keys[1] = false;
-		System.out.println("A key pressed");
-		}
-		if(e.getKeyCode() == KeyEvent.VK_S) {
-			Keys[2] = false;
-		System.out.println("S key pressed");{
-		}
-		if(e.getKeyCode() == KeyEvent.VK_D) {
-			Keys[3] = false;
-		System.out.println("D key pressed");
+		if (spawningCycleOn)
+			switch (e.getKeyCode()) {
+			case KeyEvent.VK_UP:
+			System.out.println("ARROW UP key pressed");
+			case KeyEvent.VK_W:
+			//TO-DO
+			System.out.println("W key pressed");
+				break;
+			case KeyEvent.VK_DOWN:
+			System.out.println("ARROW DOWN key pressed");
+			case KeyEvent.VK_S:
+			//TO-DO
+			System.out.println("S key pressed");
+				break;
+			case KeyEvent.VK_LEFT:
+			System.out.println("ARROW lEFT key pressed");
+			case KeyEvent.VK_A:
+			//TO-DO
+			System.out.println("A key pressed");
+				break;
+			case KeyEvent.VK_RIGHT:
+			System.out.println("ARROW RIGHT key pressed");
+			case KeyEvent.VK_D:
+			//TO-DO
+			System.out.println("D key pressed");
+				break;
+			case KeyEvent.VK_SPACE:
+				spawningCycleOn = false;
+				//program.switchToMenu();
 			}
-		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_W) {
-			Keys[0] = false;
-		System.out.println("W key pressed");
-		}
-		if(e.getKeyCode() == KeyEvent.VK_A) {
-			Keys[1] = false;
-		System.out.println("A key pressed");
-		}
-		if(e.getKeyCode() == KeyEvent.VK_S) {
-			Keys[2] = false;
-		System.out.println("S key pressed");{
-		}
-		if(e.getKeyCode() == KeyEvent.VK_D) {
-			Keys[3] = false;
-		System.out.println("D key pressed");
-			}
-		}
 	}
 
 	@Override
