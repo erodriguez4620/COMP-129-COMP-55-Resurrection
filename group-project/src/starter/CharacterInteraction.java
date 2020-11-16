@@ -50,36 +50,34 @@ public abstract class CharacterInteraction implements Interfaceable {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		int Key = e.getKeyCode();
 		
-		if (Key == KeyEvent.VK_W || Key == KeyEvent.VK_UP)  {
+		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)  {
 			System.out.println("Character is being moved up");
 		}
-		else if (Key == KeyEvent.VK_S || Key == KeyEvent.VK_DOWN) {
+		else if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
 			System.out.println("Character is being moved down");
 		}
-		else if (Key == KeyEvent.VK_A || Key == KeyEvent.VK_LEFT) {
+		else if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
 			System.out.println("Character is being moved left");
 		}
-		else if (Key == KeyEvent.VK_D || Key == KeyEvent.VK_RIGHT) {
+		else if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			System.out.println("Character is being moved right");
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		int Key = e.getKeyCode();
 		
-		if (Key == KeyEvent.VK_W || Key == KeyEvent.VK_UP)  {
+		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)  {
 			System.out.println("Character is being moved up");
 		}
-		else if (Key == KeyEvent.VK_S || Key == KeyEvent.VK_DOWN) {
+		else if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
 			System.out.println("Character is being moved down");
 		}
-		else if (Key == KeyEvent.VK_A || Key == KeyEvent.VK_LEFT) {
+		else if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
 			System.out.println("Character is being moved left");
 		}
-		else if (Key == KeyEvent.VK_D || Key == KeyEvent.VK_RIGHT) {
+		else if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			System.out.println("Character is being moved right");
 		}
 	}
