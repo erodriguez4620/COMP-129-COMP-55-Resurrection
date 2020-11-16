@@ -53,15 +53,19 @@ public abstract class CharacterInteraction implements Interfaceable {
 		
 		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)  {
 			System.out.println("Character is being moved up");
+			HeroMoveUp();
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
 			System.out.println("Character is being moved down");
+			HeroMoveDown();
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
 			System.out.println("Character is being moved left");
+			HeroMoveLeft();
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			System.out.println("Character is being moved right");
+			HeroMoveRight();
 		}
 	}
 
@@ -70,15 +74,19 @@ public abstract class CharacterInteraction implements Interfaceable {
 		
 		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)  {
 			System.out.println("Character is being moved up");
+			HeroMoveUp();
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
 			System.out.println("Character is being moved down");
+			HeroMoveDown();
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
 			System.out.println("Character is being moved left");
+			HeroMoveLeft();
 		}
 		else if (e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			System.out.println("Character is being moved right");
+			HeroMoveRight();
 		}
 	}
 
@@ -95,5 +103,25 @@ public abstract class CharacterInteraction implements Interfaceable {
 	
 	public void enemyDealsDamage(Enemy enemy) {
 		hero.setPlayerHP(hero.getPlayerHP() - enemy.getDamage());
+	}
+	public void HeroMoveLeft() {
+		if (hero.getX() - 5 >= 0) {
+			hero.move(-5, 0);
+		}
+	}
+	public void HeroMoveRight() {
+	   if (hero.getX() + 5 <= 800) {
+		   hero.move(5, 0);
+	   }
+	}
+	public void HeroMoveUp() {
+		if (hero.getY() - 5 >= 0) {
+			hero.move(0, -5);
+		}
+	}
+	public void HeroMoveDown() {
+		if (hero.getY() + 5 <= 600) {
+			hero.move(0, 5);
+		}
 	}
 }

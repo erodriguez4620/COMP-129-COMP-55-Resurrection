@@ -5,7 +5,7 @@ import java.awt.Rectangle;
 public class MainCharacter extends Rectangle {	
 	private int dx, dy;
 	public int playerHP; //player's HP
-	private Item item; //what item the player is holding
+	private ItemType item; //what item the player is holding
 	 
 	public MainCharacter(int x, int y, int width, int height, int dx, int dy) {
 			setBounds(x,y,width,height);
@@ -18,7 +18,7 @@ public class MainCharacter extends Rectangle {
 		return playerHP;
 	}
 
-	public Item getItem() {
+	public ItemType getItem() {
 		return item;
 	}
 	
@@ -35,7 +35,7 @@ public class MainCharacter extends Rectangle {
 		this.playerHP = playerHP;
 	}
 	
-	public void setItem(Item item) {
+	public void setItem(ItemType item) {
 		this.item = item;
 	}
 
