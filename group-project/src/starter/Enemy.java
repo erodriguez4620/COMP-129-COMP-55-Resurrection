@@ -4,6 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
+
+import acm.graphics.GImage;
+
 import java.awt.*;
 import java.util.*;
 
@@ -12,6 +15,7 @@ public class Enemy implements ActionListener {
 	private EnemyType enemyName;
 	private int dx, dy;
 	private Item itemDrop;
+	private GImage enemyImage;
 	
 	Timer enemyTimer = new Timer(1000, this);
 	
@@ -31,6 +35,21 @@ public class Enemy implements ActionListener {
 		this.enemyHP = enemyHP;
 		this.damage = damage;
 		this.isVertical = isVertical;
+		
+		/* NEED TO ADD THE IMAGES FOR THE ENEMIES AND CHANGE THE ENEMY IMAGES AS NEEDED
+		if (enemyName.toString() == "slime") {
+			enemyImage = "slime.png";
+		}
+		else if (enemyName.toString() == "boss") {
+			enemyImage = "boss.png";
+		}
+		else if (enemyName.toString() == "goblin") {
+			enemyImage = "goblin.png";
+		}
+		else if (goblin.toString() == "chest") {
+			enemyImage = "chest.png";
+		}
+		*/
 	}
 	
 	public String toString() {
@@ -89,6 +108,10 @@ public class Enemy implements ActionListener {
 	public boolean getIsVertical() {
 		return isVertical;
 	}
+	
+	public GImage getEnemyImage() {
+		return enemyImage;
+	}
 
 	//Setters
 	
@@ -114,6 +137,10 @@ public class Enemy implements ActionListener {
 	
 	public void setIsVertical(boolean isVertical) {
 		this.isVertical = isVertical;
+	}
+	
+	public void setEnemyImage(GImage image) {
+		enemyImage = image;
 	}
 	
 	//Check if enemy is dead
