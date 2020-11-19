@@ -159,10 +159,10 @@ public class CharacterInteraction implements ActionListener {
 			
 			if(enemyY + moveY < YBOUND) {
 				moveY = 5;
-				System.out.println("Enemy moved UP");
+				System.out.println("Enemy moved DOWN");
 			} else {
 				moveY = -5;
-				System.out.println("Enemy moved DOWN");
+				System.out.println("Enemy moved UP");
 			}
 			enemy.getEnemyImage().move(0, moveY);
 			
