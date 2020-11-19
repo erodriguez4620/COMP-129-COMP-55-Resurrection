@@ -1,27 +1,14 @@
 package starter;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
 
 import acm.graphics.GImage;
 
-import java.awt.*;
-import java.util.*;
-
-public class Enemy implements ActionListener {
+public class Enemy {
 
 	private EnemyType enemyName;
 	private int dx, dy;
 	private Item itemDrop;
 	private GImage enemyImage;
-	
-	Timer enemyTimer = new Timer(1000, this);
-	
-	//make sure to add map bounds
-	public final int XBOUND = 800;
-	public final int YBOUND = 600;
 	
 	int enemyHP;
 	int damage;
@@ -36,20 +23,19 @@ public class Enemy implements ActionListener {
 		this.damage = damage;
 		this.isVertical = isVertical;
 		
-		/* NEED TO ADD THE IMAGES FOR THE ENEMIES AND CHANGE THE ENEMY IMAGES AS NEEDED
 		if (enemyName.toString() == "slime") {
-			enemyImage = "slime.png";
+			enemyImage = new GImage("slime-green.png");
 		}
 		else if (enemyName.toString() == "boss") {
-			enemyImage = "boss.png";
+			enemyImage = new GImage("boss.png");
 		}
 		else if (enemyName.toString() == "goblin") {
-			enemyImage = "goblin.png";
+			enemyImage = new GImage("pngkit_goblin-png_1288060(1).png");
 		}
-		else if (goblin.toString() == "chest") {
-			enemyImage = "chest.png";
+		else if (enemyName.toString() == "chest") {
+			enemyImage = new GImage("chest-closed.png");
 		}
-		*/
+		enemyImage.setSize(50, 50);
 	}
 	
 	public String toString() {
@@ -57,44 +43,18 @@ public class Enemy implements ActionListener {
 	}
 
 	
-	//at some point add speed and timer ms
-	public void actionPerformed(ActionEvent e) {
-		
-		if(isVertical) {//vertical interaction
-			
-			if(dy < YBOUND) {
-				dy++;
-				System.out.println("Enemy moved UP");
-			} else {
-				dy--;
-				System.out.println("Enemy moved DOWN");
-			}
-			
-		} else { //horizontal interaction
-			
-			if(dx < XBOUND) {
-				dx++;
-				System.out.println("Enemy moved RIGHT");
-			} else {
-				dx--;
-				System.out.println("Enemy moved LEFT");
-			}
-			
-		}
-	}
-	
 	//Getters
 	
 	public EnemyType getEnemyName() {
 		return enemyName;
 	}
 
-	public int getEnemyXPosition() {
-		return dx;
+	public double getEnemyXPosition() {
+		return enemyImage.getX();
 	}
 	
-	public int getEnemyYPosition() {
-		return dy;
+	public double getEnemyYPosition() {
+		return enemyImage.getY();
 	}
 
 	public int getEnemyHp() {
@@ -119,13 +79,15 @@ public class Enemy implements ActionListener {
 		this.enemyName = enemyName;
 	}
 
-	public void setEnemeyXPosition(int x) {
+	/*
+	public void setEnemyXPosition(int x) {
 		dx = x;
 	}
 	
-	public void setEnemeyYPosition(int y) {
+	public void setEnemyYPosition(int y) {
 		dy = y;
 	}
+	*/
 
 	public void setEnemyHp(int enemyHP) {
 		this.enemyHP = enemyHP;

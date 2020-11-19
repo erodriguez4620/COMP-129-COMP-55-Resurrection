@@ -13,19 +13,25 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	private GImage img;
 	static boolean[] Keys = new boolean[4];
 	private boolean spawningCycleOn = false;
-	private CharacterInteraction input;
+	private CharacterInteraction input, enemyInput;
 	private MainCharacter hero;
+	private Enemy enemy;
 	
 	public FirstLevel(MainApplication app) {
 		this.program = app;
 		img = new GImage("hero.png", 100, 100);
 		hero = new MainCharacter(100, 100, 10, 10);
 		input = new CharacterInteraction(hero, null);
+		
+		
+		enemy = new Enemy(EnemyType.SLIME, 200, 100, 5, 5, true);
+		enemyInput = new CharacterInteraction(null, enemy);
 	}
 
 	@Override
 	public void showContents() {
 		program.add(hero.getCharacter());
+		program.add(enemy.getEnemyImage());
 	}
 
 	@Override

@@ -18,12 +18,29 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+import javax.swing.Timer;
+import java.awt.*;
+import java.util.*;
+
 public class CharacterInteraction implements ActionListener {
 	static boolean[] Keys = new boolean[4];
+	public Enemy enemy;//Using this to make the function
+	public MainCharacter hero;
+	
+	//make sure to add map bounds
+	public final int XBOUND = 800;
+	public final int YBOUND = 600;
+	
 	
 	public CharacterInteraction(MainCharacter hero, Enemy enemy) {
 		this.hero = hero;
 		this.enemy = enemy;
+		
+		if (enemy != null) {
+			//This is a timer to make the enemy move after a certain amount of time
+			Timer enemyTimer = new Timer(1000, this);
+			enemyTimer.start();
+		}
 	}
 	
 	public void mousePressed(MouseEvent e) {
@@ -90,8 +107,6 @@ public class CharacterInteraction implements ActionListener {
 		// TODO Auto-generated method stub
 	}
 	
-	public Enemy enemy;//Using this to make the function
-	public MainCharacter hero;
 	public void characterDealsDamage(Enemy enemy) {
 		enemy.setEnemyHp(enemy.getEnemyHp() - hero.getItem().getValuePoint());
 	}
@@ -120,10 +135,48 @@ public class CharacterInteraction implements ActionListener {
 		}
 	}
 
+	/*
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	*/
+	
+	public void run() {
+	}
+	
+	//at some point add speed and timer Ms
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		double enemyX = enemy.getEnemyXPosition();
+		double enemyY = enemy.getEnemyYPosition();
+		double moveY = 5.00;
+		double moveX = 5.00;
+		
+		
+		if(enemy.isVertical) {//vertical interaction
+			
+			if(enemyY + moveY < YBOUND) {
+				moveY = 5;
+				System.out.println("Enemy moved UP");
+			} else {
+				moveY = -5;
+				System.out.println("Enemy moved DOWN");
+			}
+			enemy.getEnemyImage().move(0, moveY);
+			
+		} else { //horizontal interaction
+			
+			if(enemyX + moveX < XBOUND) {
+				moveX = 5;
+				System.out.println("Enemy moved RIGHT");
+			} else {
+				moveX = -5;
+				System.out.println("Enemy moved LEFT");
+			}
+			enemy.getEnemyImage().move(moveX, 0);
+		}
 	}
 	
 }
