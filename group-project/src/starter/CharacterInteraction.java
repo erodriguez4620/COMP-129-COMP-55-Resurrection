@@ -146,37 +146,42 @@ public class CharacterInteraction implements ActionListener {
 	public void run() {
 	}
 	
+	
 	//at some point add speed and timer Ms
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		double enemyX = enemy.getEnemyXPosition();
 		double enemyY = enemy.getEnemyYPosition();
-		double moveY = 5.00;
-		double moveX = 5.00;
-		
+		double moveAmount = 5;
 		
 		if(enemy.isVertical) {//vertical interaction
-			
-			if(enemyY + moveY < YBOUND) {
-				moveY = 5;
+			if(enemyY + moveAmount > YBOUND) {
+				enemy.setMovePostive(false);
 				System.out.println("Enemy moved DOWN");
-			} else {
-				moveY = -5;
+			} else if (enemyY - moveAmount < 0){
+				enemy.setMovePostive(true);
 				System.out.println("Enemy moved UP");
 			}
-			enemy.getEnemyImage().move(0, moveY);
-			
-		} else { //horizontal interaction
-			
-			if(enemyX + moveX < XBOUND) {
-				moveX = 5;
-				System.out.println("Enemy moved RIGHT");
-			} else {
-				moveX = -5;
-				System.out.println("Enemy moved LEFT");
+			if (!enemy.movePositive) {
+				moveAmount = -5;
 			}
-			enemy.getEnemyImage().move(moveX, 0);
+			enemy.getEnemyImage().move(0, moveAmount);
+		} 
+		else {
+			if(enemyX + moveAmount > XBOUND) {
+				enemy.setMovePostive(false);
+				System.out.println("Enemy moved LEFT");
+			} else if (enemyX - moveAmount < 0){
+				enemy.setMovePostive(true);
+				System.out.println("Enemy moved RIGHT");
+			}
+			if (!enemy.movePositive) {
+				moveAmount = -5;
+			}
+			enemy.getEnemyImage().move(moveAmount, 0);
 		}
+		
+		
 	}
 	
 }

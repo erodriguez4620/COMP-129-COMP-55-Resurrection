@@ -13,12 +13,14 @@ public class Enemy {
 	int damage;
 	int attackRadius;
 	boolean isVertical;
+	boolean movePositive;
 	
-	public Enemy(EnemyType enemyName, int enemyHP, int damage, boolean isVertical, double x, double y) {
+	public Enemy(EnemyType enemyName, int enemyHP, int damage, boolean isVertical, double x, double y, boolean direction) {
 		this.enemyName = enemyName;
 		this.enemyHP = enemyHP;
 		this.damage = damage;
 		this.isVertical = isVertical;
+		movePositive = direction;
 		
 		if (enemyName.toString() == "slime") {
 			enemyImage = new GImage("slime-green.png", x, y);
@@ -69,6 +71,10 @@ public class Enemy {
 	public GImage getEnemyImage() {
 		return enemyImage;
 	}
+	
+	public boolean getIsMovePostive() {
+		return movePositive;
+	}
 
 	//Setters
 	
@@ -90,6 +96,10 @@ public class Enemy {
 	
 	public void setEnemyImage(GImage image) {
 		enemyImage = image;
+	}
+	
+	public void setMovePostive(boolean direction) {
+		movePositive = direction;
 	}
 	
 	//Check if enemy is dead
@@ -115,7 +125,7 @@ public class Enemy {
 		
 		//Enemy enemy1 = new Enemy(EnemyType.GOBLIN, 5, 5, 50, 15, true);
 		//Enemy enemy2 = new Enemy(EnemyType.SLIME, 7, 4, 20, 5, false);
-		Enemy enemy3 = new Enemy(EnemyType.GOBLIN, 200, 25, true, 100, 200);
+		Enemy enemy3 = new Enemy(EnemyType.GOBLIN, 200, 25, true, 100, 200, true);
 		
 		//System.out.println("The enemy spawned is: " + enemy1.toString() + " Their X postion is: (" + enemy1.getEnemyXPosition() + ") Their Y Position is: (" + enemy1.getEnemyYPosition() + ") Its HP is: " + enemy1.getEnemyHp() + " It hits for: " + enemy1.getDamage() + " Enemy is moving vertically: " + enemy1.getIsVertical());
 		//System.out.println("The enemy spawned is: " + enemy2.toString() + " Their X postion is: (" + enemy2.getEnemyXPosition() + ") Their Y Position is: (" + enemy2.getEnemyYPosition() + ") Its HP is: " + enemy2.getEnemyHp() + " It hits for: " + enemy2.getDamage() + " Enemy is moving vertically: " + enemy2.getIsVertical());
