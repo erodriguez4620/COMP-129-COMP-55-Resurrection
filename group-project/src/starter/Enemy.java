@@ -6,7 +6,6 @@ import acm.graphics.GImage;
 public class Enemy {
 
 	private EnemyType enemyName;
-	private int dx, dy;
 	private Item itemDrop;
 	private GImage enemyImage;
 	
@@ -15,25 +14,23 @@ public class Enemy {
 	int attackRadius;
 	boolean isVertical;
 	
-	public Enemy(EnemyType enemyName, int x, int y,int enemyHP, int damage, boolean isVertical) {
+	public Enemy(EnemyType enemyName, int enemyHP, int damage, boolean isVertical, double x, double y) {
 		this.enemyName = enemyName;
-		dx = x;
-		dy = y;
 		this.enemyHP = enemyHP;
 		this.damage = damage;
 		this.isVertical = isVertical;
 		
 		if (enemyName.toString() == "slime") {
-			enemyImage = new GImage("slime-green.png");
+			enemyImage = new GImage("slime-green.png", x, y);
 		}
 		else if (enemyName.toString() == "boss") {
-			enemyImage = new GImage("boss.png");
+			enemyImage = new GImage("boss.png", x, y);
 		}
 		else if (enemyName.toString() == "goblin") {
-			enemyImage = new GImage("pngkit_goblin-png_1288060(1).png");
+			enemyImage = new GImage("goblin.png", x, y);
 		}
 		else if (enemyName.toString() == "chest") {
-			enemyImage = new GImage("chest-closed.png");
+			enemyImage = new GImage("chest-closed.png", x, y);
 		}
 		enemyImage.setSize(50, 50);
 	}
@@ -79,16 +76,6 @@ public class Enemy {
 		this.enemyName = enemyName;
 	}
 
-	/*
-	public void setEnemyXPosition(int x) {
-		dx = x;
-	}
-	
-	public void setEnemyYPosition(int y) {
-		dy = y;
-	}
-	*/
-
 	public void setEnemyHp(int enemyHP) {
 		this.enemyHP = enemyHP;
 	}
@@ -128,7 +115,7 @@ public class Enemy {
 		
 		//Enemy enemy1 = new Enemy(EnemyType.GOBLIN, 5, 5, 50, 15, true);
 		//Enemy enemy2 = new Enemy(EnemyType.SLIME, 7, 4, 20, 5, false);
-		Enemy enemy3 = new Enemy(EnemyType.GOBLIN, 1, 7, 200, 25, true);
+		Enemy enemy3 = new Enemy(EnemyType.GOBLIN, 200, 25, true, 100, 200);
 		
 		//System.out.println("The enemy spawned is: " + enemy1.toString() + " Their X postion is: (" + enemy1.getEnemyXPosition() + ") Their Y Position is: (" + enemy1.getEnemyYPosition() + ") Its HP is: " + enemy1.getEnemyHp() + " It hits for: " + enemy1.getDamage() + " Enemy is moving vertically: " + enemy1.getIsVertical());
 		//System.out.println("The enemy spawned is: " + enemy2.toString() + " Their X postion is: (" + enemy2.getEnemyXPosition() + ") Their Y Position is: (" + enemy2.getEnemyYPosition() + ") Its HP is: " + enemy2.getEnemyHp() + " It hits for: " + enemy2.getDamage() + " Enemy is moving vertically: " + enemy2.getIsVertical());

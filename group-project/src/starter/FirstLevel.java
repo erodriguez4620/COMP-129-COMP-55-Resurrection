@@ -24,7 +24,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		input = new CharacterInteraction(hero, null);
 		
 		
-		enemy = new Enemy(EnemyType.SLIME, 200, 100, 5, 5, true);
+		enemy = new Enemy(EnemyType.SLIME, 5, 5, true, 100, 550);
 		enemyInput = new CharacterInteraction(null, enemy);
 	}
 
