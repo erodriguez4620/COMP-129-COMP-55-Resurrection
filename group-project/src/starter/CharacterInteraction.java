@@ -33,6 +33,7 @@ public class CharacterInteraction implements ActionListener {
 	public final int BOTTOMYBOUND = 550;
 	public final int TOPYBOUND = 50;
 	public final int ENEMYSIZE = 60;
+	public final int HEROSIZE = 50;
 	
 	
 	public CharacterInteraction(MainCharacter hero, Enemy enemy) {
@@ -120,21 +121,25 @@ public class CharacterInteraction implements ActionListener {
 	public void HeroMoveLeft() {
 		if (hero.getXPosPlayer() - 5 >= LEFTXBOUND) {
 			hero.tick(-5.0, 0);
+			System.out.println(hero.getXPosPlayer());
 		}
 	}
 	public void HeroMoveRight() {
-	   if (hero.getXPosPlayer() + 5 <= RIGHTXBOUND) {
+	   if (hero.getXPosPlayer() + HEROSIZE + 5 <= RIGHTXBOUND) {
 		   hero.tick(5, 0);
+		   System.out.println(hero.getXPosPlayer());
 	   }
 	}
 	public void HeroMoveUp() {
 		if (hero.getYPosPlayer() - 5 >= TOPYBOUND) {
 			hero.tick(0, -5);
+			System.out.println(hero.getYPosPlayer());
 		}
 	}
 	public void HeroMoveDown() {
-		if (hero.getYPosPlayer() + 5 <= BOTTOMYBOUND) {
+		if (hero.getYPosPlayer() + HEROSIZE + 5 <= BOTTOMYBOUND) {
 			hero.tick(0, 5);
+			System.out.println(hero.getYPosPlayer());
 		}
 	}
 
@@ -153,9 +158,11 @@ public class CharacterInteraction implements ActionListener {
 	//at some point add speed and timer Ms
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		double moveAmount = 5;
+		
+		if(enemy != null) {
 		double enemyX = enemy.getEnemyXPosition();
 		double enemyY = enemy.getEnemyYPosition();
-		double moveAmount = 5;
 		
 		if(enemy.isVertical) {//vertical interaction
 			if(enemyY + moveAmount + ENEMYSIZE > BOTTOMYBOUND) {
@@ -182,8 +189,27 @@ public class CharacterInteraction implements ActionListener {
 				moveAmount = -5;
 			}
 			enemy.getEnemyImage().move(moveAmount, 0);
+			}
 		}
 		
+//		if(hero != null) {
+//			double heroX = hero.getXPosPlayer();
+//			double heroY = hero.getYPosPlayer();
+//			
+//		if(heroX - moveAmount > LEFTXBOUND) {
+//			heroX -= 5;
+//		} 
+//		if((heroX + HEROSIZE + moveAmount) < RIGHTXBOUND) {
+//			heroX += 5;
+//		}
+//		
+//		if(heroY - moveAmount > TOPYBOUND) {
+//			heroY -= 5;
+//		}
+//		if((heroY + HEROSIZE + moveAmount) < BOTTOMYBOUND) {
+//			heroY += 5;
+//			}
+//		}
 		
 	}
 	

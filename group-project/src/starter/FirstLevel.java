@@ -96,7 +96,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	}
 	
 public void keyPressed(KeyEvent e) {
-		
+//hero movement		
 		if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP)  {
 			System.out.println("Character is being moved up");
 			HeroMoveUp();
@@ -114,27 +114,27 @@ public void keyPressed(KeyEvent e) {
 			HeroMoveRight();
 		}
 	}
-
+//hero bounds kind of
 public void HeroMoveLeft() {
-	if (hero.getXPosPlayer() - 5 >= 0) {
+	if (hero.getXPosPlayer() - 5 >= 25) {
 		hero.tick(-5.0, 0);
 	}
 }
 public void HeroMoveRight() {
-   if (hero.getXPosPlayer() + 5 <= 800) {
+   if (hero.getXPosPlayer() + 55 <= 775) {
 	   hero.tick(5, 0);
    }
 }
 public void HeroMoveUp() {
-	if (hero.getYPosPlayer() - 5 >= 0) {
+	if (hero.getYPosPlayer() - 5 >= 50) {
 		hero.tick(0, -5);
 	}
 }
 public void HeroMoveDown() {
-	if (hero.getYPosPlayer() + 5 <= 600) {
+	if (hero.getYPosPlayer() + 55 <= 550) {
 		hero.tick(0, 5);
 	}
-}
+  }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
