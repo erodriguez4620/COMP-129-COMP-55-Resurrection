@@ -27,17 +27,15 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	
 	public FirstLevel(MainApplication app) {
 		this.program = app;
-		img = new GImage("hero.png", 100, 100);
-		hero = new MainCharacter(100, 100, 10, 10);
-		input = new CharacterInteraction(hero, null);
-		
-		
-		enemy = new Enemy(EnemyType.SLIME, 5, 5, false, 780, 10, true);
-		enemyInput = new CharacterInteraction(null, enemy);
-		
-		enemy1 = new Enemy(EnemyType.GOBLIN, 5, 5, true, 50, 10, false);
-		enemyInput = new CharacterInteraction(null, enemy1);
-		
+	}
+
+	@Override
+	public void showContents() {
+		generateLevel();
+		generateEnemies();
+	}
+
+	public void generateLevel() {
 		floor = new GImage("floor.png", 0, 0);
 		floor.setSize(800, 600);
 		
@@ -54,11 +52,10 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		outStairs = new GImage("stairs.png", 800, 250);
 		inStairs.setSize(-50, 100);
 		outStairs.setSize(-50, 100);
-
-	}
-
-	@Override
-	public void showContents() {
+		
+		hero = new MainCharacter(50, 275, 10, 10);
+		input = new CharacterInteraction(hero, null);
+		
 		program.add(floor);
 		
 		program.add(leftWall);
@@ -69,11 +66,21 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		program.add(inStairs);
 		program.add(outStairs);
 		
+		
 		program.add(hero.getCharacter());
+	}
+	
+	public void generateEnemies() {
+		enemy = new Enemy(EnemyType.SLIME, 5, 5, false, 600, 100, true);
+		enemyInput = new CharacterInteraction(null, enemy);
+		
+		enemy1 = new Enemy(EnemyType.GOBLIN, 5, 5, true, 50, 100, false);
+		enemyInput = new CharacterInteraction(null, enemy1);
+		
 		program.add(enemy.getEnemyImage());
 		program.add(enemy1.getEnemyImage());
 	}
-
+	
 	@Override
 	public void hideContents() {
 		program.removeAll();

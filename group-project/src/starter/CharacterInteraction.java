@@ -28,8 +28,11 @@ public class CharacterInteraction implements ActionListener {
 	public MainCharacter hero;
 	
 	//make sure to add map bounds
-	public final int XBOUND = 800;
-	public final int YBOUND = 600;
+	public final int RIGHTXBOUND = 775;
+	public final int LEFTXBOUND = 25;
+	public final int BOTTOMYBOUND = 550;
+	public final int TOPYBOUND = 50;
+	public final int ENEMYSIZE = 60;
 	
 	
 	public CharacterInteraction(MainCharacter hero, Enemy enemy) {
@@ -38,7 +41,7 @@ public class CharacterInteraction implements ActionListener {
 		
 		if (enemy != null) {
 			//This is a timer to make the enemy move after a certain amount of time
-			Timer enemyTimer = new Timer(1000, this);
+			Timer enemyTimer = new Timer(500, this);
 			enemyTimer.start();
 		}
 	}
@@ -115,22 +118,22 @@ public class CharacterInteraction implements ActionListener {
 		hero.setPlayerHP(hero.getPlayerHP() - enemy.getDamage());
 	}
 	public void HeroMoveLeft() {
-		if (hero.getXPosPlayer() - 5 >= 0) {
+		if (hero.getXPosPlayer() - 5 >= LEFTXBOUND) {
 			hero.tick(-5.0, 0);
 		}
 	}
 	public void HeroMoveRight() {
-	   if (hero.getXPosPlayer() + 5 <= 800) {
+	   if (hero.getXPosPlayer() + 5 <= RIGHTXBOUND) {
 		   hero.tick(5, 0);
 	   }
 	}
 	public void HeroMoveUp() {
-		if (hero.getYPosPlayer() - 5 >= 0) {
+		if (hero.getYPosPlayer() - 5 >= TOPYBOUND) {
 			hero.tick(0, -5);
 		}
 	}
 	public void HeroMoveDown() {
-		if (hero.getYPosPlayer() + 5 <= 600) {
+		if (hero.getYPosPlayer() + 5 <= BOTTOMYBOUND) {
 			hero.tick(0, 5);
 		}
 	}
@@ -155,10 +158,10 @@ public class CharacterInteraction implements ActionListener {
 		double moveAmount = 5;
 		
 		if(enemy.isVertical) {//vertical interaction
-			if(enemyY + moveAmount > YBOUND) {
+			if(enemyY + moveAmount + ENEMYSIZE > BOTTOMYBOUND) {
 				enemy.setMovePostive(false);
 				System.out.println("Enemy moved DOWN");
-			} else if (enemyY - moveAmount < 0){
+			} else if (enemyY - moveAmount - ENEMYSIZE < TOPYBOUND){
 				enemy.setMovePostive(true);
 				System.out.println("Enemy moved UP");
 			}
@@ -168,10 +171,10 @@ public class CharacterInteraction implements ActionListener {
 			enemy.getEnemyImage().move(0, moveAmount);
 		} 
 		else {
-			if(enemyX + moveAmount > XBOUND) {
+			if(enemyX + moveAmount + ENEMYSIZE > RIGHTXBOUND) {
 				enemy.setMovePostive(false);
 				System.out.println("Enemy moved LEFT");
-			} else if (enemyX - moveAmount < 0){
+			} else if (enemyX - moveAmount - ENEMYSIZE < LEFTXBOUND){
 				enemy.setMovePostive(true);
 				System.out.println("Enemy moved RIGHT");
 			}

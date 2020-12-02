@@ -15,12 +15,15 @@ public class Enemy {
 	boolean isVertical;
 	boolean movePositive;
 	
+	boolean isMoving;
+	
 	public Enemy(EnemyType enemyName, int enemyHP, int damage, boolean isVertical, double x, double y, boolean direction) {
 		this.enemyName = enemyName;
 		this.enemyHP = enemyHP;
 		this.damage = damage;
 		this.isVertical = isVertical;
 		movePositive = direction;
+		isMoving = true;
 		
 		if (enemyName.toString() == "slime") {
 			enemyImage = new GImage("slime-green.png", x, y);
@@ -119,6 +122,7 @@ public class Enemy {
 		}
 		return null;
 	}
+	
 	
 	//text based test
 	public static void main(String[] args) {
