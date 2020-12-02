@@ -14,6 +14,7 @@ public class MainCharacter {
 	public MainCharacter(double x, double y, int dx, int dy) {
 		character = new GImage ("hero.png", x, y);
 		item = new Item(ItemType.WEAPON, 10);
+		character.setSize(50, 50);
 	}
 	public boolean hasItem() {
 		return item != null;
