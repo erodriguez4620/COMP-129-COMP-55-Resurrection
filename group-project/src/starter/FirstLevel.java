@@ -16,6 +16,14 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	private CharacterInteraction input, enemyInput;
 	private MainCharacter hero;
 	private Enemy enemy;
+	private Enemy enemy1;
+	
+	private GImage floor;
+	private GImage topWall, botWall;
+	private GImage inStairs;
+	private GImage outStairs;
+	private GImage leftWall;
+	private GImage rightWall;
 	
 	public FirstLevel(MainApplication app) {
 		this.program = app;
@@ -26,12 +34,44 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		
 		enemy = new Enemy(EnemyType.SLIME, 5, 5, false, 780, 10, true);
 		enemyInput = new CharacterInteraction(null, enemy);
+		
+		enemy1 = new Enemy(EnemyType.GOBLIN, 5, 5, true, 50, 10, false);
+		enemyInput = new CharacterInteraction(null, enemy1);
+		
+		floor = new GImage("floor.png", 0, 0);
+		floor.setSize(800, 600);
+		
+		topWall = new GImage("wall.png", 0, 0);
+		botWall = new GImage("wall.png", 0, 550);
+		leftWall = new GImage("wall.png", 0, 0);
+		rightWall = new GImage("wall.png", 775, 0);
+		topWall.setSize(800, 50);
+		botWall.setSize(800, 50);
+		leftWall.setSize(25, 600);
+		rightWall.setSize(25, 600);
+		
+		inStairs = new GImage("stairs.png", 50, 250);
+		outStairs = new GImage("stairs.png", 800, 250);
+		inStairs.setSize(-50, 100);
+		outStairs.setSize(-50, 100);
+
 	}
 
 	@Override
 	public void showContents() {
+		program.add(floor);
+		
+		program.add(leftWall);
+		program.add(rightWall);
+		program.add(topWall);
+		program.add(botWall);
+		
+		program.add(inStairs);
+		program.add(outStairs);
+		
 		program.add(hero.getCharacter());
 		program.add(enemy.getEnemyImage());
+		program.add(enemy1.getEnemyImage());
 	}
 
 	@Override
