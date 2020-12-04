@@ -8,38 +8,36 @@ import acm.graphics.*;
 public class MenuPane extends GraphicsPane {
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
-	private GButton rect;
-	private GRect background;
+	private GButton play;
+	private GImage menu;
 	
 	public MenuPane(MainApplication app) {
 		super();
 		program = app;
 		
-		background = new GRect(0, 0, 1000, 1000);
-		background.setColor(Color.BLACK);
-		background.setFilled(true);
+		menu = new GImage("mockup-for-game-comp55-startup-menu.jpg", 0, 0);
 
-		rect = new GButton("Start Game", 300, 350, 200, 100);
-		rect.setFillColor(Color.GREEN);
+		play = new GButton("", 265, 378, 269, 72);
+		play.setVisible(false);
 	}
 
 	@Override
 	public void showContents() {
-		program.add(background);
-		program.add(rect);
+		program.add(menu);
+		program.add(play);
 
 	}
 
 	@Override
 	public void hideContents() {
-		program.remove(rect);
-		program.remove(background);
+		program.remove(play);
+		program.remove(menu);
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		GObject obj = program.getElementAt(e.getX(), e.getY());
-		if (obj == rect) {
+		if (obj == play) {
 			program.switchToFirst();
 		}
 	}
