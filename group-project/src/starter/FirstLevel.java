@@ -17,6 +17,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	private MainCharacter hero;
 	private Enemy enemy;
 	private Enemy enemy1;
+	private Enemy enemy2;
 	
 	private GImage floor;
 	private GImage topWall, botWall;
@@ -77,8 +78,12 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		enemy1 = new Enemy(EnemyType.GOBLIN, 5, 5, true, 50, 100, false);
 		enemyInput = new CharacterInteraction(null, enemy1);
 		
+		enemy2 = new Enemy(EnemyType.BOSS, 5, 5, true, 600, 100, false);
+		enemyInput = new CharacterInteraction(null, enemy2);
+		
 		program.add(enemy.getEnemyImage());
 		program.add(enemy1.getEnemyImage());
+		program.add(enemy2.getEnemyImage());
 	}
 	
 	@Override
