@@ -27,17 +27,21 @@ public class Enemy {
 		
 		if (enemyName.toString() == "slime") {
 			enemyImage = new GImage("slime-green.png", x, y);
+			enemyImage.setSize(40, 30);
 		}
 		else if (enemyName.toString() == "boss") {
 			enemyImage = new GImage("boss.png", x, y);
+			enemyImage.setSize(90, 90);
 		}
 		else if (enemyName.toString() == "goblin") {
 			enemyImage = new GImage("goblin.png", x, y);
+			enemyImage.setSize(40, 50);
 		}
 		else if (enemyName.toString() == "chest") {
 			enemyImage = new GImage("chest-closed.png", x, y);
+			enemyImage.setSize(50, 50);
 		}
-		enemyImage.setSize(50, 50);
+		
 	}
 	
 	public String toString() {
