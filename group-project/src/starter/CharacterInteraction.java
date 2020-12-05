@@ -32,9 +32,9 @@ public class CharacterInteraction implements ActionListener {
 	public final int LEFTXBOUND = 25;
 	public final int BOTTOMYBOUND = 550;
 	public final int TOPYBOUND = 50;
-	public final int ENEMYSIZE = 60;
 	public final int HEROSIZE = 50;
 	
+	//public final int ENEMYSIZE = 60; (Replaced with enemy.getEnemyImage().getBounds().getWidth() and enemy.getEnemyImage().getBounds().getHeight())
 	
 	public CharacterInteraction(MainCharacter hero, Enemy enemy) {
 		this.hero = hero;
@@ -143,19 +143,11 @@ public class CharacterInteraction implements ActionListener {
 		}
 	}
 
-	/*
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	*/
 	
 	public void run() {
 	}
 	
 	
-	//at some point add speed and timer Ms
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		double moveAmount = 5;
@@ -165,12 +157,12 @@ public class CharacterInteraction implements ActionListener {
 		double enemyY = enemy.getEnemyYPosition();
 		
 		if(enemy.isVertical) {//vertical interaction
-			if(enemyY + moveAmount + ENEMYSIZE > BOTTOMYBOUND) {
+			if(enemyY + moveAmount + enemy.getEnemyImage().getBounds().getHeight() > BOTTOMYBOUND) {
 				enemy.setMovePostive(false);
-				System.out.println("Enemy moved DOWN");
-			} else if (enemyY - moveAmount - ENEMYSIZE < TOPYBOUND){
+				//Enemy is moving up
+			} else if (enemyY - moveAmount - enemy.getEnemyImage().getBounds().getHeight() < TOPYBOUND){
 				enemy.setMovePostive(true);
-				System.out.println("Enemy moved UP");
+				//Enemy is moving down
 			}
 			if (!enemy.movePositive) {
 				moveAmount = -5;
@@ -178,12 +170,12 @@ public class CharacterInteraction implements ActionListener {
 			enemy.getEnemyImage().move(0, moveAmount);
 		} 
 		else {
-			if(enemyX + moveAmount + ENEMYSIZE > RIGHTXBOUND) {
+			if(enemyX + moveAmount + enemy.getEnemyImage().getBounds().getWidth() > RIGHTXBOUND) {
 				enemy.setMovePostive(false);
-				System.out.println("Enemy moved LEFT");
-			} else if (enemyX - moveAmount - ENEMYSIZE < LEFTXBOUND){
+				//Enemy is moving left
+			} else if (enemyX - moveAmount - enemy.getEnemyImage().getBounds().getWidth() < LEFTXBOUND){
 				enemy.setMovePostive(true);
-				System.out.println("Enemy moved RIGHT");
+				//Enemy is moving right
 			}
 			if (!enemy.movePositive) {
 				moveAmount = -5;

@@ -1,6 +1,4 @@
 package starter;
-import java.applet.*;
-import java.awt.Color;
 import java.awt.event.MouseEvent;
 
 import acm.graphics.*;
