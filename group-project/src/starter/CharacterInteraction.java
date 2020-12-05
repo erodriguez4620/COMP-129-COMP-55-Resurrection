@@ -168,6 +168,7 @@ public class CharacterInteraction implements ActionListener {
 				moveAmount = -5;
 			}
 			enemy.getEnemyImage().move(0, moveAmount);
+			enemy.getAttackRange().translate(0.00, moveAmount);
 		} 
 		else {
 			if(enemyX + moveAmount + enemy.getEnemyImage().getBounds().getWidth() > RIGHTXBOUND) {
@@ -181,6 +182,9 @@ public class CharacterInteraction implements ActionListener {
 				moveAmount = -5;
 			}
 			enemy.getEnemyImage().move(moveAmount, 0);
+			enemy.getAttackRange().translate(0.00, moveAmount);
+			System.out.println("x pos: " + enemy.getAttackRange().getX());
+			System.out.println("y pos: " + enemy.getAttackRange().getY());
 			}
 		}
 		

@@ -2,6 +2,7 @@ package starter;
 
 
 import acm.graphics.GImage;
+import acm.graphics.GRectangle;
 
 public class Enemy {
 
@@ -16,6 +17,7 @@ public class Enemy {
 	boolean movePositive;
 	
 	boolean isMoving;
+	private GRectangle attackRange;
 	
 	public Enemy(EnemyType enemyName, int enemyHP, int damage, boolean isVertical, double x, double y, boolean direction) {
 		this.enemyName = enemyName;
@@ -24,6 +26,33 @@ public class Enemy {
 		this.isVertical = isVertical;
 		movePositive = direction;
 		isMoving = true;
+		int width = 0;
+		int height = 0;
+		
+		if (enemyName.toString() == "slime") {
+			enemyImage = new GImage("slime-green.png", x, y);
+			width = 40;
+			height = 30;
+		}
+		else if (enemyName.toString() == "boss") {
+			enemyImage = new GImage("boss.png", x, y);
+			width = 90;
+			height = 90;
+		}
+		else if (enemyName.toString() == "goblin") {
+			enemyImage = new GImage("goblin.png", x, y);
+			width = 40;
+			height = 50;
+		}
+		else if (enemyName.toString() == "chest") {
+			enemyImage = new GImage("chest-closed.png", x, y);
+			width = 50;
+			height = 50;
+		}
+		enemyImage.setSize(width, height);
+		attackRange = new GRectangle(x - 5, y - 5, width + 10, height + 10);
+		
+		
 		
 		if (enemyName.toString() == "slime") {
 			enemyImage = new GImage("slime-green.png", x, y);
@@ -42,6 +71,9 @@ public class Enemy {
 			enemyImage.setSize(50, 50);
 		}
 		
+	}
+	public GRectangle getAttackRange() {
+		return attackRange;
 	}
 	
 	public String toString() {
