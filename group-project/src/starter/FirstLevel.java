@@ -120,6 +120,11 @@ public void keyPressed(KeyEvent e) {
 			System.out.println("Character is being moved right");
 			HeroMoveRight();
 		}
+		
+		//check if player hitbox collides with enemy hitbox (still need to fix enemy/player updates. it's off)
+		if (hero.getHitBox().intersects(enemy.getAttackRange())) {
+            System.out.println("COLLISION");
+        }
 	}
 //hero bounds kind of
 public void HeroMoveLeft() {

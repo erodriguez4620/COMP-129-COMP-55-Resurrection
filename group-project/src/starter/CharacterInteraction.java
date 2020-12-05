@@ -85,6 +85,11 @@ public class CharacterInteraction implements ActionListener {
 			System.out.println("Character is being moved right");
 			HeroMoveRight();
 		}
+		
+		//check if player hitbox collides with enemy hitbox (still need to fix enemy/player updates. it's off)
+		if (hero.getHitBox().intersects(enemy.getAttackRange())) {
+            System.out.println("COLLISION");
+        }
 	}
 
 	public void keyReleased(KeyEvent e) {
@@ -105,6 +110,11 @@ public class CharacterInteraction implements ActionListener {
 			System.out.println("Character is being moved right");
 			HeroMoveRight();
 		}
+		
+		//check if player hitbox collides with enemy hitbox (still need to fix enemy/player updates. it's off)
+		if (hero.getHitBox().intersects(enemy.getAttackRange())) {
+            System.out.println("COLLISION");
+        }
 	}
 
 	public void keyTyped(KeyEvent e) {

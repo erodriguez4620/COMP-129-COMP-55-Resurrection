@@ -62,6 +62,7 @@ public class MainCharacter extends GraphicsProgram {
 		System.out.println("x location: " + hitbox.getX());
 		System.out.println("y location: " + hitbox.getY());
 	}
+	
 //	void draw(Graphics g) { 
 //		g.fillRect(this.x, this.y, this.width, this.height); //drawing player as a box for now but we can user this as a hitbox
 //	}
