@@ -14,6 +14,9 @@ public class MainCharacter extends GraphicsProgram {
 	private GImage character;
 	private GRectangle hitbox;
 	MainApplication program;
+	//Could modify value
+	public int attackCooldown = 7;
+	private int attackValue = 7;
 	
 	public MainCharacter(double x, double y, int dx, int dy) {
 		character = new GImage ("hero.png", x, y);
@@ -59,8 +62,8 @@ public class MainCharacter extends GraphicsProgram {
 	public void tick(double x, double y) {
 		character.move(x, y);
 		hitbox.translate(x, y);
-		System.out.println("x location: " + hitbox.getX());
-		System.out.println("y location: " + hitbox.getY());
+		//System.out.println("x location: " + hitbox.getX());
+		//System.out.println("y location: " + hitbox.getY());
 	}
 	
 //	void draw(Graphics g) { 
@@ -77,5 +80,21 @@ public class MainCharacter extends GraphicsProgram {
 	public void setDy(int dy) {
 		this.dy = dy;
 	}
+	public void decreaseAttackCooldown() {
+		attackCooldown--;
+	}
+	public void resetAttackCooldown() {
+		attackCooldown = 7;
+	}
+	public int getAttackCooldown() {
+		return attackCooldown;
+	}
+	public int getAttackValue() {
+		return attackValue;
+	}
+	public void setAttackValue(int value) {
+		attackValue = value;
+	}
+	
 
 }

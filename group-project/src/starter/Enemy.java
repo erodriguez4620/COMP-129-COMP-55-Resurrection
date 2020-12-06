@@ -18,6 +18,8 @@ public class Enemy {
 	
 	boolean isMoving;
 	private GRectangle attackRange;
+	private int unagroTurns = 20;
+	private int movesUntilAttack = 10;
 	
 	public Enemy(EnemyType enemyName, int enemyHP, int damage, boolean isVertical, double x, double y, boolean direction) {
 		this.enemyName = enemyName;
@@ -50,28 +52,9 @@ public class Enemy {
 			height = 50;
 		}
 		enemyImage.setSize(width, height);
-		attackRange = new GRectangle(x - 5, y - 5, width + 10, height + 10);
-		
-		
-		
-		if (enemyName.toString() == "slime") {
-			enemyImage = new GImage("slime-green.png", x, y);
-			enemyImage.setSize(40, 30);
-		}
-		else if (enemyName.toString() == "boss") {
-			enemyImage = new GImage("boss.png", x, y);
-			enemyImage.setSize(90, 90);
-		}
-		else if (enemyName.toString() == "goblin") {
-			enemyImage = new GImage("goblin.png", x, y);
-			enemyImage.setSize(40, 50);
-		}
-		else if (enemyName.toString() == "chest") {
-			enemyImage = new GImage("chest-closed.png", x, y);
-			enemyImage.setSize(50, 50);
-		}
-		
+		attackRange = new GRectangle(x - 35, y - 35, width + 70, height + 70);
 	}
+	
 	public GRectangle getAttackRange() {
 		return attackRange;
 	}
@@ -79,10 +62,15 @@ public class Enemy {
 	public String toString() {
 		return enemyName.toString();
 	}
+	public int getAgro() {
+		return unagroTurns;
+	}
 
 	
 	//Getters
-	
+	public int getMovesUntilAttack() {
+		return movesUntilAttack;
+	}
 	public EnemyType getEnemyName() {
 		return enemyName;
 	}
@@ -114,9 +102,20 @@ public class Enemy {
 	public boolean getIsMovePostive() {
 		return movePositive;
 	}
-
-	//Setters
+	public boolean getMoving() {
+		return isMoving;
+	}
 	
+	//Setters
+	public void setMoving(boolean move) {
+		isMoving = move;
+	}
+	public void decreaseAgro() {
+		unagroTurns--;
+	}
+	public void resetAgro() {
+		unagroTurns = 20;
+	}
 	public void setEnemyName(EnemyType enemyName) {
 		this.enemyName = enemyName;
 	}
@@ -139,6 +138,12 @@ public class Enemy {
 	
 	public void setMovePostive(boolean direction) {
 		movePositive = direction;
+	}
+	public void decreaseMovesAttack() {
+		movesUntilAttack--;
+	}
+	public void resetMovesAttack() {
+		movesUntilAttack = 10;
 	}
 	
 	//Check if enemy is dead

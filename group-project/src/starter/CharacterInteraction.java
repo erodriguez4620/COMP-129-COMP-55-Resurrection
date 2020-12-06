@@ -131,25 +131,25 @@ public class CharacterInteraction implements ActionListener {
 	public void HeroMoveLeft() {
 		if (hero.getXPosPlayer() - 5 >= LEFTXBOUND) {
 			hero.tick(-5.0, 0);
-			System.out.println(hero.getXPosPlayer());
+			//System.out.println(hero.getXPosPlayer());
 		}
 	}
 	public void HeroMoveRight() {
 	   if (hero.getXPosPlayer() + HEROSIZE + 5 <= RIGHTXBOUND) {
 		   hero.tick(5, 0);
-		   System.out.println(hero.getXPosPlayer());
+		   //System.out.println(hero.getXPosPlayer());
 	   }
 	}
 	public void HeroMoveUp() {
 		if (hero.getYPosPlayer() - 5 >= TOPYBOUND) {
 			hero.tick(0, -5);
-			System.out.println(hero.getYPosPlayer());
+			//System.out.println(hero.getYPosPlayer());
 		}
 	}
 	public void HeroMoveDown() {
 		if (hero.getYPosPlayer() + HEROSIZE + 5 <= BOTTOMYBOUND) {
 			hero.tick(0, 5);
-			System.out.println(hero.getYPosPlayer());
+			//System.out.println(hero.getYPosPlayer());
 		}
 	}
 
@@ -160,43 +160,53 @@ public class CharacterInteraction implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		double moveAmount = 5;
-		
-		if(enemy != null) {
-		double enemyX = enemy.getEnemyXPosition();
-		double enemyY = enemy.getEnemyYPosition();
-		
-		if(enemy.isVertical) {//vertical interaction
-			if(enemyY + moveAmount + enemy.getEnemyImage().getBounds().getHeight() > BOTTOMYBOUND) {
-				enemy.setMovePostive(false);
-				//Enemy is moving up
-			} else if (enemyY - moveAmount - enemy.getEnemyImage().getBounds().getHeight() < TOPYBOUND){
-				enemy.setMovePostive(true);
-				//Enemy is moving down
-			}
-			if (!enemy.movePositive) {
-				moveAmount = -5;
-			}
-			enemy.getEnemyImage().move(0, moveAmount);
-			enemy.getAttackRange().translate(0.00, moveAmount);
-		} 
-		else {
-			if(enemyX + moveAmount + enemy.getEnemyImage().getBounds().getWidth() > RIGHTXBOUND) {
-				enemy.setMovePostive(false);
-				//Enemy is moving left
-			} else if (enemyX - moveAmount - enemy.getEnemyImage().getBounds().getWidth() < LEFTXBOUND){
-				enemy.setMovePostive(true);
-				//Enemy is moving right
-			}
-			if (!enemy.movePositive) {
-				moveAmount = -5;
-			}
-			enemy.getEnemyImage().move(moveAmount, 0);
-			enemy.getAttackRange().translate(0.00, moveAmount);
-			System.out.println("x pos: " + enemy.getAttackRange().getX());
-			System.out.println("y pos: " + enemy.getAttackRange().getY());
+		if (enemy.isMoving) {
+			double moveAmount = 5;
+			
+			if(enemy != null) {
+			double enemyX = enemy.getEnemyXPosition();
+			double enemyY = enemy.getEnemyYPosition();
+			
+			if(enemy.isVertical) {//vertical interaction
+				if(enemyY + moveAmount + enemy.getEnemyImage().getBounds().getHeight() > BOTTOMYBOUND) {
+					enemy.setMovePostive(false);
+					//Enemy is moving up
+				} else if (enemyY - moveAmount - enemy.getEnemyImage().getBounds().getHeight() < TOPYBOUND){
+					enemy.setMovePostive(true);
+					//Enemy is moving down
+				}
+				if (!enemy.movePositive) {
+					moveAmount = -5;
+				}
+				enemy.getEnemyImage().move(0, moveAmount);
+				enemy.getAttackRange().translate(0.00, moveAmount);
+			} 
+			else {
+				if(enemyX + moveAmount + enemy.getEnemyImage().getBounds().getWidth() > RIGHTXBOUND) {
+					enemy.setMovePostive(false);
+					//Enemy is moving left
+				} else if (enemyX - moveAmount - enemy.getEnemyImage().getBounds().getWidth() < LEFTXBOUND){
+					enemy.setMovePostive(true);
+					//Enemy is moving right
+				}
+				if (!enemy.movePositive) {
+					moveAmount = -5;
+				}
+				enemy.getEnemyImage().move(moveAmount, 0);
+				enemy.getAttackRange().translate(moveAmount, 0);
+				//System.out.println("x pos: " + enemy.getAttackRange().getX());
+				//System.out.println("y pos: " + enemy.getAttackRange().getY());
+				//System.out.println("Enemy x pos: " + enemy.getEnemyImage().getX());
+				//System.out.println("Enemy y pos: " + enemy.getEnemyImage().getY());
+				}
 			}
 		}
+		
+		
+		
+		
+		
+		
 		
 //		if(hero != null) {
 //			double heroX = hero.getXPosPlayer();
