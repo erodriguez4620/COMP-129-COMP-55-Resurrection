@@ -6,6 +6,8 @@ public class MainApplication extends GraphicsApplication {
 
 	private FirstLevel startRoom;
 	private MenuPane menu;
+	private LoseScreen lose;
+	private WinScreen win;
 	private int count;
 
 	public void init() {
@@ -16,6 +18,8 @@ public class MainApplication extends GraphicsApplication {
 		System.out.println("Game has started!");
 		startRoom = new FirstLevel(this);
 		menu = new MenuPane(this);
+		lose = new LoseScreen(this);
+		win = new WinScreen(this);
 		switchToMenu();
 	}
 
@@ -26,5 +30,13 @@ public class MainApplication extends GraphicsApplication {
 
 	public void switchToFirst() {
 		switchToScreen(startRoom);
+	}
+	
+	public void switchToLose() {
+		switchToScreen(lose);
+	}
+	
+	public void switchToWin() {
+		switchToScreen(win);
 	}
 }

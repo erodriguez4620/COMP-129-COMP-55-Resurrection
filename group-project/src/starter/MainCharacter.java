@@ -23,6 +23,7 @@ public class MainCharacter extends GraphicsProgram {
 		item = new Item(ItemType.WEAPON, 10);
 		character.setSize(50, 50);
 		hitbox = new GRectangle(x - 5, y - 5, 60, 60);
+		playerHP = 25;
 	}
 	public boolean hasItem() {
 		return item != null;

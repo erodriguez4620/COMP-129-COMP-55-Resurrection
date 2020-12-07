@@ -4,11 +4,15 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.Timer;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import acm.graphics.GImage;
+import acm.graphics.GLabel;
 import acm.graphics.GObject;
+import acm.graphics.GRect;
 
 public class FirstLevel extends GraphicsPane implements ActionListener {
 	private MainApplication program; // you will use program to get access to
@@ -18,7 +22,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	private boolean spawningCycleOn = false;
 	private CharacterInteraction input, enemyInput;
 	private MainCharacter hero;
-	private Enemy[] enemies = {new Enemy(EnemyType.SLIME, 10, 5, false, 600, 100, true), new Enemy(EnemyType.GOBLIN, 10, 5, true, 50, 100, false), new Enemy(EnemyType.BOSS, 10, 5, true, 600, 100, false)};
+	private Enemy[] enemies = {new Enemy(EnemyType.SLIME, 10, 5, false, 600, 100, true), new Enemy(EnemyType.GOBLIN, 1, 5, true, 50, 100, false), new Enemy(EnemyType.BOSS, 10, 5, true, 600, 100, false)};
 	
 	
 	private GImage floor;
@@ -27,6 +31,8 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	private GImage outStairs;
 	private GImage leftWall;
 	private GImage rightWall;
+	private GRect playerHealth;
+	private GRect healthBG;
 	
 	public int counter = enemies.length;
 	
@@ -38,6 +44,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	public void showContents() {
 		generateLevel();
 		generateEnemies();
+		
 	}
 
 	public void generateLevel() {
@@ -71,6 +78,15 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		program.add(inStairs);
 		program.add(outStairs);
 		
+		healthBG = new GRect(20, 5, 135, 35);
+		healthBG.setFilled(true);
+		healthBG.setColor(Color.BLACK);
+		program.add(healthBG);
+		
+		playerHealth = new GRect(25, 10, hero.getPlayerHP() * 5, 25);
+		playerHealth.setFilled(true);
+		playerHealth.setColor(Color.RED);
+		program.add(playerHealth);
 		
 		program.add(hero.getCharacter());
 		Timer attackTimer = new Timer(250, this);
@@ -112,6 +128,37 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		if (obj == img) {
 			program.switchToMenu();
 		System.out.println("left mouse has been pressed");
+		}
+		
+		for(int i = 0; i < enemies.length; i++) {
+			if (enemies[i] != null) {
+				if (hero.getAttackCooldown() < 0) {
+					if (enemies[i].getEnemyImage().getBounds().intersects(hero.getHitBox())) {
+						enemies[i].setEnemyHp(enemies[i].getEnemyHp() - hero.getAttackValue());
+						System.out.println("Player dealing damage");
+						hero.resetAttackCooldown();
+						
+						if (enemies[i].getEnemyHp() <= 0) {
+							enemies[i].turnToSkull();
+							program.add(enemies[i].getEnemyImage());
+							enemies[i] = null;
+							//enemies[i].hideCounter			counter--
+							/* These are my attempts at removing the enemy
+							enemies[i] = null;
+							System.out.print("old array length: " + enemies.length);
+							for(int z = i; z < enemies.length - 1; z++) {
+								enemies[z] = enemies[z + 1];
+							}
+							int test = enemies.length - 1;
+							System.out.println("Removing enemy");
+							System.out.println("enemy value = " + enemies[test]);
+							System.out.print("new array length: " + enemies.length);
+							*/
+							//REMOVE ENEMY FROM SCREEN
+						}
+					}
+				}
+			}
 		}
 	}
 	
@@ -164,51 +211,40 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		//check if player hitbox collides with enemy hitbox (still need to fix enemy/player updates. it's off)
 		hero.decreaseAttackCooldown();
+		int gameOverCounter = 0;
 		for(int i = 0; i < enemies.length; i++) {
-			if (hero.getHitBox().intersects(enemies[i].getAttackRange())) {
-				enemies[i].resetAgro();
-				enemies[i].setMoving(false);  
-				enemies[i].decreaseMovesAttack();
-				if (enemies[i].getMovesUntilAttack() == 0) {
-					hero.setPlayerHP(hero.getPlayerHP() - enemies[i].getDamage());
-					enemies[i].resetMovesAttack();
-					if (hero.getPlayerHP() <= 0) {
-						//DO GAME OVER FUNCTION
-					}
-				}
-				
-	        }
-			else {
-				enemies[i].decreaseAgro();
-				if (enemies[i].getAgro() == 0) {
-					enemies[i].setMoving(true);
-					enemies[i].resetMovesAttack();
-				}
+			if (enemies[i] == null) {
+				gameOverCounter++;
 			}
-			if (hero.getAttackCooldown() < 0) {
-				if (enemies[i].getEnemyImage().getBounds().intersects(hero.getHitBox())) {
-					enemies[i].setEnemyHp(enemies[i].getEnemyHp() - hero.getAttackValue());
-					System.out.println("dealing damage");
-					hero.resetAttackCooldown();
-					if (enemies[i].getEnemyHp() <= 0) {
-						//enemies[i].hideCounter			counter--
-						/* These are my attempts at removing the enemy
-						enemies[i] = null;
-						System.out.print("old array length: " + enemies.length);
-						for(int z = i; z < enemies.length - 1; z++) {
-							enemies[z] = enemies[z + 1];
+			if (enemies[i] != null) {
+				if (hero.getHitBox().intersects(enemies[i].getAttackRange())) {
+					enemies[i].resetAgro();
+					enemies[i].setMoving(false);  
+					enemies[i].decreaseMovesAttack();
+					if (enemies[i].getMovesUntilAttack() == 0) {
+						hero.setPlayerHP(hero.getPlayerHP() - enemies[i].getDamage());
+						playerHealth.setSize(hero.getPlayerHP() * 5, 25);
+						enemies[i].resetMovesAttack();
+						if (hero.getPlayerHP() <= 0) {
+							//DO GAME OVER FUNCTION
+							program.switchToLose();
 						}
-						int test = enemies.length - 1;
-						System.out.println("Removing enemy");
-						System.out.println("enemy value = " + enemies[test]);
-						System.out.print("new array length: " + enemies.length);
-						*/
-						//REMOVE ENEMY FROM SCREEN
+					}
+					
+		        }
+				else {
+					enemies[i].decreaseAgro();
+					if (enemies[i].getAgro() == 0) {
+						enemies[i].setMoving(true);
+						enemies[i].resetMovesAttack();
 					}
 				}
 			}
 		}
 		
+		if (gameOverCounter == enemies.length) {
+			program.switchToWin();
+		}
 		/*
 		boolean beatGame = true;
 		for (int i = 0; i < enemies.length; i++) {

@@ -50,6 +50,10 @@ public class Enemy {
 			enemyImage = new GImage("chest-closed.png", x, y);
 			width = 50;
 			height = 50;
+		} else if (enemyName.toString() == "deadenemy") {
+			enemyImage = new GImage("deadboi.png", x, y);
+			width = 50;
+			height = 50;
 		}
 		enemyImage.setSize(width, height);
 		attackRange = new GRectangle(x - 35, y - 35, width + 70, height + 70);
@@ -164,6 +168,15 @@ public class Enemy {
 		return null;
 	}
 	
+	public void turnToSkull() {
+		double x = enemyImage.getX();
+		double y = enemyImage.getY();
+		
+		enemyImage = new GImage("deadboi.png", x, y);
+		enemyImage.setSize(50, 50);
+		
+		System.out.println("Homie dead");
+	}
 	
 	//text based test
 	public static void main(String[] args) {
@@ -176,4 +189,5 @@ public class Enemy {
 		//System.out.println("The enemy spawned is: " + enemy2.toString() + " Their X postion is: (" + enemy2.getEnemyXPosition() + ") Their Y Position is: (" + enemy2.getEnemyYPosition() + ") Its HP is: " + enemy2.getEnemyHp() + " It hits for: " + enemy2.getDamage() + " Enemy is moving vertically: " + enemy2.getIsVertical());
 		System.out.println("The enemy spawned is: " + enemy3.toString() + " Their X postion is: (" + enemy3.getEnemyXPosition() + ") Their Y Position is: (" + enemy3.getEnemyYPosition() + ") Its HP is: " + enemy3.getEnemyHp() + " It hits for: " + enemy3.getDamage() + " Enemy is moving vertically: " + enemy3.getIsVertical());
 	}
+
 }
