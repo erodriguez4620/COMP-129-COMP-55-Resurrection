@@ -22,9 +22,14 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	private boolean spawningCycleOn = false;
 	private CharacterInteraction input, enemyInput;
 	private MainCharacter hero;
-	private Enemy[] enemies = {new Enemy(EnemyType.SLIME, 10, 5, false, 600, 100, true), new Enemy(EnemyType.GOBLIN, 1, 5, true, 50, 100, false), new Enemy(EnemyType.BOSS, 10, 5, true, 600, 100, false)};
-	private Timer attackTimer;
+	private Enemy[] enemies = {
+			new Enemy(EnemyType.SLIME, 10, 5, true, 250, 100, true),
+			new Enemy(EnemyType.SLIME, 10, 5, true, 450, 375, true),
+			new Enemy(EnemyType.GOBLIN, 15, 10, false,  50, 100, false),
+			new Enemy(EnemyType.GOBLIN, 15, 10, false,  150, 475, false),
+			new Enemy(EnemyType.BOSS, 20, 20, true, 600, 100, false)};
 	
+	private Timer attackTimer;
 	private GImage floor;
 	private GImage topWall, botWall;
 	private GImage inStairs;
@@ -63,7 +68,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		inStairs = new GImage("stairs.png", 50, 250);
 		outStairs = new GImage("stairs.png", 800, 250);
 		inStairs.setSize(-50, 100);
-		outStairs.setSize(-50, 100);
+		outStairs.setSize(50, 100);
 		
 		hero = new MainCharacter(50, 275, 10, 10);
 		input = new CharacterInteraction(hero, null);
@@ -78,12 +83,12 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		program.add(inStairs);
 		program.add(outStairs);
 		
-		healthBG = new GRect(20, 5, 135, 35);
+		healthBG = new GRect(22, 5, 106, 35);
 		healthBG.setFilled(true);
 		healthBG.setColor(Color.BLACK);
 		program.add(healthBG);
 		
-		playerHealth = new GRect(25, 10, hero.getPlayerHP() * 5, 25);
+		playerHealth = new GRect(25, 10, hero.getPlayerHP(), 25);
 		playerHealth.setFilled(true);
 		playerHealth.setColor(Color.RED);
 		program.add(playerHealth);
@@ -98,23 +103,6 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 			enemyInput = new CharacterInteraction(null, enemy);
 			program.add(enemy.getEnemyImage());
 		}
-		
-		/*
-		enemy = new Enemy(EnemyType.SLIME, 5, 5, false, 600, 100, true);
-		enemyInput = new CharacterInteraction(null, enemy);
-		
-		
-		enemy1 = new Enemy(EnemyType.GOBLIN, 5, 5, true, 50, 100, false);
-		enemyInput = new CharacterInteraction(null, enemy1);
-		
-		enemy2 = new Enemy(EnemyType.BOSS, 5, 5, true, 600, 100, false);
-		enemyInput = new CharacterInteraction(null, enemy2);
-		
-		
-		program.add(enemy.getEnemyImage());
-		program.add(enemy1.getEnemyImage());
-		program.add(enemy2.getEnemyImage());
-		*/
 	}
 	
 	@Override
@@ -143,18 +131,6 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 							enemies[i].turnToSkull();
 							program.add(enemies[i].getEnemyImage());
 							enemies[i] = null;
-							//enemies[i].hideCounter			counter--
-							/* These are my attempts at removing the enemy
-							enemies[i] = null;
-							System.out.print("old array length: " + enemies.length);
-							for(int z = i; z < enemies.length - 1; z++) {
-								enemies[z] = enemies[z + 1];
-							}
-							int test = enemies.length - 1;
-							System.out.println("Removing enemy");
-							System.out.println("enemy value = " + enemies[test]);
-							System.out.print("new array length: " + enemies.length);
-							*/
 							//REMOVE ENEMY FROM SCREEN
 						}
 					}
@@ -224,11 +200,8 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 					enemies[i].decreaseMovesAttack();
 					if (enemies[i].getMovesUntilAttack() == 0) {
 						hero.setPlayerHP(hero.getPlayerHP() - enemies[i].getDamage());
-						playerHealth.setSize(hero.getPlayerHP() * 5, 25);
+						playerHealth.setSize(hero.getPlayerHP(), 25);
 						enemies[i].resetMovesAttack();
-						//if (hero.getPlayerHP() <= 0) {
-							//program.switchToLose();
-						//}
 					}
 					
 		        }

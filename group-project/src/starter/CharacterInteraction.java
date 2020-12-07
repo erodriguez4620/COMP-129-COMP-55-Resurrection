@@ -35,8 +35,6 @@ public class CharacterInteraction implements ActionListener {
 	public final int TOPYBOUND = 50;
 	public final int HEROSIZE = 50;
 	
-	//public final int ENEMYSIZE = 60; (Replaced with enemy.getEnemyImage().getBounds().getWidth() and enemy.getEnemyImage().getBounds().getHeight())
-	
 	public CharacterInteraction(MainCharacter hero, Enemy enemy) {
 		this.hero = hero;
 		this.enemy = enemy;
@@ -198,38 +196,11 @@ public class CharacterInteraction implements ActionListener {
 				}
 				enemy.getEnemyImage().move(moveAmount, 0);
 				enemy.getAttackRange().translate(moveAmount, 0);
-				//System.out.println("x pos: " + enemy.getAttackRange().getX());
-				//System.out.println("y pos: " + enemy.getAttackRange().getY());
-				//System.out.println("Enemy x pos: " + enemy.getEnemyImage().getX());
-				//System.out.println("Enemy y pos: " + enemy.getEnemyImage().getY());
+
 				}
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-//		if(hero != null) {
-//			double heroX = hero.getXPosPlayer();
-//			double heroY = hero.getYPosPlayer();
-//			
-//		if(heroX - moveAmount > LEFTXBOUND) {
-//			heroX -= 5;
-//		} 
-//		if((heroX + HEROSIZE + moveAmount) < RIGHTXBOUND) {
-//			heroX += 5;
-//		}
-//		
-//		if(heroY - moveAmount > TOPYBOUND) {
-//			heroY -= 5;
-//		}
-//		if((heroY + HEROSIZE + moveAmount) < BOTTOMYBOUND) {
-//			heroY += 5;
-//			}
-//		}
+
 		
 	}
 	
