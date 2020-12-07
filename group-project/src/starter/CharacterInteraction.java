@@ -26,6 +26,7 @@ public class CharacterInteraction implements ActionListener {
 	static boolean[] Keys = new boolean[4];
 	public Enemy enemy;//Using this to make the function
 	public MainCharacter hero;
+	private Timer enemyTimer;
 	
 	//make sure to add map bounds
 	public final int RIGHTXBOUND = 775;
@@ -39,10 +40,10 @@ public class CharacterInteraction implements ActionListener {
 	public CharacterInteraction(MainCharacter hero, Enemy enemy) {
 		this.hero = hero;
 		this.enemy = enemy;
-		
+	
 		if (enemy != null) {
 			//This is a timer to make the enemy move after a certain amount of time
-			Timer enemyTimer = new Timer(500, this);
+			enemyTimer = new Timer(500, this);
 			enemyTimer.start();
 		}
 	}
@@ -160,6 +161,9 @@ public class CharacterInteraction implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(enemy.getEnemyHp() <= 0) {
+		enemyTimer.stop();
+		}
 		if (enemy.isMoving) {
 			double moveAmount = 5;
 			

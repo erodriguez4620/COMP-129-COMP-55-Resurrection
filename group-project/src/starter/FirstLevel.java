@@ -23,7 +23,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	private CharacterInteraction input, enemyInput;
 	private MainCharacter hero;
 	private Enemy[] enemies = {new Enemy(EnemyType.SLIME, 10, 5, false, 600, 100, true), new Enemy(EnemyType.GOBLIN, 1, 5, true, 50, 100, false), new Enemy(EnemyType.BOSS, 10, 5, true, 600, 100, false)};
-	
+	private Timer attackTimer;
 	
 	private GImage floor;
 	private GImage topWall, botWall;
@@ -40,11 +40,11 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		this.program = app;
 	}
 
+	
 	@Override
 	public void showContents() {
 		generateLevel();
 		generateEnemies();
-		
 	}
 
 	public void generateLevel() {
@@ -89,7 +89,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		program.add(playerHealth);
 		
 		program.add(hero.getCharacter());
-		Timer attackTimer = new Timer(250, this);
+		attackTimer = new Timer(250, this);
 		attackTimer.start();
 	}
 	
@@ -139,6 +139,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 						hero.resetAttackCooldown();
 						
 						if (enemies[i].getEnemyHp() <= 0) {
+							program.remove(enemies[i].getEnemyImage());
 							enemies[i].turnToSkull();
 							program.add(enemies[i].getEnemyImage());
 							enemies[i] = null;
@@ -225,10 +226,9 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 						hero.setPlayerHP(hero.getPlayerHP() - enemies[i].getDamage());
 						playerHealth.setSize(hero.getPlayerHP() * 5, 25);
 						enemies[i].resetMovesAttack();
-						if (hero.getPlayerHP() <= 0) {
-							//DO GAME OVER FUNCTION
-							program.switchToLose();
-						}
+						//if (hero.getPlayerHP() <= 0) {
+							//program.switchToLose();
+						//}
 					}
 					
 		        }
@@ -242,23 +242,15 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 			}
 		}
 		
+		if (hero.getPlayerHP() <= 0) {
+			attackTimer.stop();
+			program.switchToLose();
+		}
 		if (gameOverCounter == enemies.length) {
+			attackTimer.stop();
 			program.switchToWin();
 		}
-		/*
-		boolean beatGame = true;
-		for (int i = 0; i < enemies.length; i++) {
-			if (enemies[i] != null) {
-				beatGame = false;
-			}
-		}
-		THIS WAS ME TRYING TO MAKE A GAME OVER FUNCITON, THIS AND THE PART COMMENTED OUT ABOVE DO NOT WORK
-		if (beatGame) {
-			System.out.println("You have beat the game, congrats I guess");
-		}
-		if(enemy.getAttackRange().intersects(hero.getHitBox())) {
-        	System.out.println("ENEMY TOUCHES CHARACTER");
-        }
-        */
+		
+	
 	}
 }
