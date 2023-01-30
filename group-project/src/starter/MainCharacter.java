@@ -18,12 +18,12 @@ public class MainCharacter extends GraphicsProgram {
 	public int attackCooldown = 7;
 	private int attackValue = 7;
 	
-	public MainCharacter(double x, double y, int dx, int dy) {
-		character = new GImage ("hero.png", x, y);
+	public MainCharacter(GImage character_image, double x, double y, int dx, int dy, int playerHP) {
+		character = character_image;
 		item = new Item(ItemType.WEAPON, 10);
 		character.setSize(50, 50);
 		hitbox = new GRectangle(x - 5, y - 5, 60, 60);
-		playerHP = 100;
+		this.playerHP = playerHP;
 	}
 	public boolean hasItem() {
 		return item != null;

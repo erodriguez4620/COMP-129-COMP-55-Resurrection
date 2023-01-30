@@ -20,9 +20,6 @@ public class MainApplication extends GraphicsApplication {
 	public void run() {
 		System.out.println("Game has started!");
 		
-		
-		// test
-		
 		GImage floor = new GImage("floor.png", 0, 0);
 		floor.setSize(800, 600);
 		GImage topWall = new GImage("wall.png", 0, 0);
@@ -39,7 +36,21 @@ public class MainApplication extends GraphicsApplication {
 		inStairs.setSize(-50, 100);
 		outStairs.setSize(50, 100);
 		
-		startRoom = new FirstLevel(this, floor, topWall, botWall, inStairs, outStairs, leftWall, rightWall);
+		int x = 50;
+		int y = 275;
+		GImage character = new GImage ("hero.png", x, y);
+		
+		MainCharacter hero = new MainCharacter(character, x, y, 10, 10, 100);
+		System.out.println("BRUH");
+		
+		Enemy[] enemies  = {
+				new Enemy(EnemyType.SLIME, 10, 5, true, 250, 100, true),
+				new Enemy(EnemyType.SLIME, 10, 5, true, 450, 375, true),
+				new Enemy(EnemyType.GOBLIN, 15, 10, false,  50, 100, false),
+				new Enemy(EnemyType.GOBLIN, 15, 10, false,  150, 475, false),
+				new Enemy(EnemyType.BOSS, 20, 20, true, 600, 100, false)};
+		
+		startRoom = new FirstLevel(this, enemies, floor, topWall, botWall, inStairs, outStairs, leftWall, rightWall, hero);
 		
 		
 		

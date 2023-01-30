@@ -22,12 +22,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	private boolean spawningCycleOn = false;
 	private CharacterInteraction input, enemyInput;
 	private MainCharacter hero;
-	private Enemy[] enemies = {
-			new Enemy(EnemyType.SLIME, 10, 5, true, 250, 100, true),
-			new Enemy(EnemyType.SLIME, 10, 5, true, 450, 375, true),
-			new Enemy(EnemyType.GOBLIN, 15, 10, false,  50, 100, false),
-			new Enemy(EnemyType.GOBLIN, 15, 10, false,  150, 475, false),
-			new Enemy(EnemyType.BOSS, 20, 20, true, 600, 100, false)};
+	private Enemy[] enemies = new Enemy[100];
 	
 	private Timer attackTimer;
 	private GImage floor;
@@ -46,8 +41,9 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	}
 	
 	
-	public FirstLevel(MainApplication app, GImage floor, GImage topWall, GImage botWall, GImage inStairs, GImage outStairs, GImage leftWall, GImage rightWall) {
-		System.out.println("Constructor!");
+	public FirstLevel(MainApplication app, Enemy[] enemies_input, GImage floor, GImage topWall, GImage botWall, GImage inStairs, GImage outStairs, GImage leftWall, GImage rightWall, MainCharacter hero) {
+		enemies = enemies_input;
+		
 		this.floor = floor;
 		this.topWall = topWall;
 		this.botWall = botWall;
@@ -55,6 +51,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		this.outStairs = outStairs;
 		this.leftWall = leftWall;
 		this.rightWall = rightWall;
+		this.hero = hero;
 		
 		this.program = app;
 	}
@@ -67,7 +64,6 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	}
 
 	public void generateLevel() {
-		hero = new MainCharacter(50, 275, 10, 10);
 		input = new CharacterInteraction(hero, null);
 		
 		program.add(floor);
