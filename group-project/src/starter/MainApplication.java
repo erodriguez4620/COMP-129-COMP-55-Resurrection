@@ -1,4 +1,7 @@
 package starter;
+
+import acm.graphics.GImage;
+
 public class MainApplication extends GraphicsApplication {
 	public static final int WINDOW_WIDTH = 800;
 	public static final int WINDOW_HEIGHT = 600;
@@ -16,7 +19,30 @@ public class MainApplication extends GraphicsApplication {
 
 	public void run() {
 		System.out.println("Game has started!");
-		startRoom = new FirstLevel(this);
+		
+		
+		
+		
+		GImage floor = new GImage("floor.png", 0, 0);
+		floor.setSize(800, 600);
+		GImage topWall = new GImage("wall.png", 0, 0);
+		GImage botWall = new GImage("wall.png", 0, 550);
+		GImage leftWall = new GImage("wall.png", 0, 0);
+		GImage rightWall = new GImage("wall.png", 775, 0);
+		topWall.setSize(800, 50);
+		botWall.setSize(800, 50);
+		leftWall.setSize(25, 600);
+		rightWall.setSize(25, 600);
+		
+		GImage inStairs = new GImage("stairs.png", 50, 250);
+		GImage outStairs = new GImage("stairs.png", 800, 250);
+		inStairs.setSize(-50, 100);
+		outStairs.setSize(50, 100);
+		
+		startRoom = new FirstLevel(this, floor, topWall, botWall, inStairs, outStairs, leftWall, rightWall);
+		
+		
+		
 		menu = new MenuPane(this);
 		lose = new LoseScreen(this);
 		win = new WinScreen(this);
@@ -24,7 +50,7 @@ public class MainApplication extends GraphicsApplication {
 	}
 
 	public void switchToMenu() {
-		startRoom = new FirstLevel(this);
+//		startRoom = new FirstLevel(this);
 		switchToScreen(menu);
 	}
 

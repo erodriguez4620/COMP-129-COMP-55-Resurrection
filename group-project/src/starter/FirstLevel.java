@@ -41,7 +41,21 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	
 	public int counter = enemies.length;
 	
-	public FirstLevel(MainApplication app) {
+	FirstLevel() {
+		System.out.println("Constructor!");
+	}
+	
+	
+	public FirstLevel(MainApplication app, GImage floor, GImage topWall, GImage botWall, GImage inStairs, GImage outStairs, GImage leftWall, GImage rightWall) {
+		System.out.println("Constructor!");
+		this.floor = floor;
+		this.topWall = topWall;
+		this.botWall = botWall;
+		this.inStairs = inStairs;
+		this.outStairs = outStairs;
+		this.leftWall = leftWall;
+		this.rightWall = rightWall;
+		
 		this.program = app;
 	}
 
@@ -53,22 +67,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	}
 
 	public void generateLevel() {
-		floor = new GImage("floor.png", 0, 0);
-		floor.setSize(800, 600);
 		
-		topWall = new GImage("wall.png", 0, 0);
-		botWall = new GImage("wall.png", 0, 550);
-		leftWall = new GImage("wall.png", 0, 0);
-		rightWall = new GImage("wall.png", 775, 0);
-		topWall.setSize(800, 50);
-		botWall.setSize(800, 50);
-		leftWall.setSize(25, 600);
-		rightWall.setSize(25, 600);
-		
-		inStairs = new GImage("stairs.png", 50, 250);
-		outStairs = new GImage("stairs.png", 800, 250);
-		inStairs.setSize(-50, 100);
-		outStairs.setSize(50, 100);
 		
 		hero = new MainCharacter(50, 275, 10, 10);
 		input = new CharacterInteraction(hero, null);
