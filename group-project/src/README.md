@@ -11,9 +11,9 @@ everything being determined (enemies, main character) in the FirstLevel.java src
 MainApplication.java file, where all of the screens are intialized.
 ## Pseudo Code
 (Hard to create Pseudo Code for this features since it mostly involves moving things around)
-Go into FirstLevel.java and remove all of the hardcoded variable declarations in FirstLevel.java. 
-Create a constructor which takes enemies, images for the level design, and other level generation
-Edit FirstLevel::generateLevel() to take the variables declared earlier above and use them to generate the level
+Go into FirstLevel.java and remove all of the hardcoded variable declarations in FirstLevel.java.  <br>
+Create a constructor which takes enemies, images for the level design, and other level generation <br>
+Edit FirstLevel::generateLevel() to take the variables declared earlier above and use them to generate the level <br>
 Go into the MainApplication.java src file and create code which generates the FirstLevel variable
 
 # Taking a Text File to Generate the Levels
@@ -21,12 +21,13 @@ To support non-programmer who would join the project, there will be a new featur
 which takes a text file with the information which is required to generate a level, parsed, and then
 used in the construction of the first level.
 ## Psuedo Code
-MainApplication::initializeFirstLevel("Text_file_name")
+MainApplication::initializeFirstLevel("Text_file_name") <br>
 
 Open Textfile
-While parsing through the text file:
-  Read the first phrase and see what category it is trying to write to
-    If it is an enemy, add to the enemies section
-    If it is the level image, initialize it to the level Image
-    etc.
-  Create the First level using all of the information from above
+While parsing through the text file: <br>
+&emsp;  Read the first phrase and see what category it is trying to write to <br>
+&emsp;&emsp;    If it is an enemy, add to the enemies section <br>
+&emsp;&emsp;    If it is the level image, initialize it to the level Image <br>
+&emsp;&emsp;    etc. <br>
+Close textfile <br>
+Create the First level using all of the information from above <br>
