@@ -21,7 +21,7 @@ public class MainApplication extends GraphicsApplication {
 		System.out.println("Game has started!");
 		
 		
-		
+		// test
 		
 		GImage floor = new GImage("floor.png", 0, 0);
 		floor.setSize(800, 600);

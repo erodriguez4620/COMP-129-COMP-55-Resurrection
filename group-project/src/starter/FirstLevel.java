@@ -67,8 +67,6 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	}
 
 	public void generateLevel() {
-		
-		
 		hero = new MainCharacter(50, 275, 10, 10);
 		input = new CharacterInteraction(hero, null);
 		
