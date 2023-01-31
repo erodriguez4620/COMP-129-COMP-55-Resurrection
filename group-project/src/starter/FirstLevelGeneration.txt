@@ -1,0 +1,14 @@
+Floor:floor.png,0,0,800,600
+TopWall:wall.png,0,0,800,50
+BottomWall:wall.png,0,550,800,50
+LeftWall:wall.png,0,0,25,600
+RightWall:wall.png,775,0,25,600
+InStairs:stairs.png,50,250,-50,100
+OutStairs:stairs.png,800,250,50,100
+MainCharacter:hero.png,50,275,10,10,100
+Enemy:Slime,10,5,true,250,100,true
+Enemy:Slime,10,5,true,450,375,true
+Enemy:Goblin,15,10,false,50,100,false
+Enemy:Goblin,15,10,false,150,475,false
+Enemy:Boss,20,20,true,600,100,false
+Enemy:Boss,20,20,true,600,100,true

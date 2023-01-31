@@ -38,36 +38,8 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	
 	public int counter = enemies.length;
 	
-	FirstLevel() {
-		System.out.println("Constructor!");
-	}
-	
-	
-	public FirstLevel(MainApplication app, Enemy[] enemies_input, GImage floor, GImage topWall, GImage botWall, GImage inStairs, GImage outStairs, GImage leftWall, GImage rightWall, MainCharacter hero) {
-//		enemies = enemies_input;
-		
-//		this.floor = floor;
-//		this.topWall = topWall;
-//		this.botWall = botWall;
-//		this.inStairs = inStairs;
-//		this.outStairs = outStairs;
-//		this.leftWall = leftWall;
-//		this.rightWall = rightWall;
-//		this.hero = hero;
-		
-		
-		// Add parameter to get the file name
-		String temp = "C:\\Users\\rando\\git\\COMP-129-COMP-55-Resurrection\\group-project\\src\\starter\\temp.txt";
-		// Open Textfile 
-		// While parsing through the text file:
-			// Read the first phrase and see what category it is trying to write to
-				// If it is an enemy, add to the enemies section
-				// If it is the stairs image, add it as a parameter
-				// Repeat for walls, floor, and the main character 
-		// Close textfile
-		// Create the First level using all of the information from above
-		
-		File file = new File(temp);
+	public FirstLevel(MainApplication app, String file_name) {		
+		File file = new File(file_name);
 		try {
 			// Open Textfile, create object for the BufferedReader
 			BufferedReader br = new BufferedReader(new FileReader(file));
@@ -79,8 +51,6 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 				// Read the first phrase and see what category it is trying to write to
 				String[] st_split = st.split(":", 0);
 				String[] st_split_parameters = st_split[1].split(",", 0);
-				System.out.println("Length1: " + st_split.length);
-				System.out.println("Length2: " + st_split_parameters.length);
  				// If it is an enemy, add to the enemies section
 				// If it is the stairs image, add it as a parameter
 				// Repeat for walls, floor, and the main character
@@ -138,7 +108,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 								System.exit(-1);
 								break;
 						}
-						System.out.println("Bruh: " + st_split_parameters.length);
+						// Create the enemy object and add it to the array
 						this.enemies[enemy_index] = new Enemy(new_enemy_type, Integer.parseInt(st_split_parameters[1]), Integer.parseInt(st_split_parameters[2]), Boolean.parseBoolean(st_split_parameters[3]), Integer.parseInt(st_split_parameters[4]), Integer.parseInt(st_split_parameters[5]), Boolean.parseBoolean(st_split_parameters[6]));
 						enemy_index++;
 						break;
@@ -151,15 +121,11 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 						System.out.println("Now Exiting Program");
 						System.exit(-1);
 				}
-				
-
 			 }
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println("hello1");
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			System.out.println("hello2");
 			e.printStackTrace();
 		}
@@ -178,7 +144,6 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		input = new CharacterInteraction(hero, null);
 		
 		program.add(floor);
-		
 		program.add(leftWall);
 		program.add(rightWall);
 		program.add(topWall);
@@ -204,6 +169,7 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	
 	public void generateEnemies() {
 		for(Enemy enemy : enemies) {
+			// Makes sure that it does not try to add a null enemy object
 			if (enemy != null) {
 				enemyInput = new CharacterInteraction(null, enemy);
 				program.add(enemy.getEnemyImage());
