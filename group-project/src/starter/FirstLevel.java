@@ -44,29 +44,127 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	
 	
 	public FirstLevel(MainApplication app, Enemy[] enemies_input, GImage floor, GImage topWall, GImage botWall, GImage inStairs, GImage outStairs, GImage leftWall, GImage rightWall, MainCharacter hero) {
-		enemies = enemies_input;
+//		enemies = enemies_input;
 		
-		this.floor = floor;
-		this.topWall = topWall;
-		this.botWall = botWall;
-		this.inStairs = inStairs;
-		this.outStairs = outStairs;
-		this.leftWall = leftWall;
-		this.rightWall = rightWall;
-		this.hero = hero;
+//		this.floor = floor;
+//		this.topWall = topWall;
+//		this.botWall = botWall;
+//		this.inStairs = inStairs;
+//		this.outStairs = outStairs;
+//		this.leftWall = leftWall;
+//		this.rightWall = rightWall;
+//		this.hero = hero;
+		
+		
+		// Add parameter to get the file name
+		String temp = "C:\\Users\\rando\\git\\COMP-129-COMP-55-Resurrection\\group-project\\src\\starter\\temp.txt";
+		// Open Textfile 
+		// While parsing through the text file:
+			// Read the first phrase and see what category it is trying to write to
+				// If it is an enemy, add to the enemies section
+				// If it is the stairs image, add it as a parameter
+				// Repeat for walls, floor, and the main character 
+		// Close textfile
+		// Create the First level using all of the information from above
+		
+		File file = new File(temp);
+		try {
+			// Open Textfile, create object for the BufferedReader
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			// Counter for the index of the enemies
+			int enemy_index = 0;
+			// While parsing through the text file:
+			String st;
+			while ((st = br.readLine()) != null) {
+				// Read the first phrase and see what category it is trying to write to
+				String[] st_split = st.split(":", 0);
+				String[] st_split_parameters = st_split[1].split(",", 0);
+				System.out.println("Length1: " + st_split.length);
+				System.out.println("Length2: " + st_split_parameters.length);
+ 				// If it is an enemy, add to the enemies section
+				// If it is the stairs image, add it as a parameter
+				// Repeat for walls, floor, and the main character
+				switch(st_split[0]) {
+					case "MainCharacter":
+						GImage hero_image = new GImage(st_split_parameters[0], Integer.parseInt(st_split_parameters[1]), Integer.parseInt(st_split_parameters[2]));
+						this.hero = new MainCharacter(hero_image, Integer.parseInt(st_split_parameters[1]), Integer.parseInt(st_split_parameters[2]), Integer.parseInt(st_split_parameters[3]), Integer.parseInt(st_split_parameters[4]), Integer.parseInt(st_split_parameters[5]));
+						break;
+					case "TopWall":
+						this.topWall = new GImage(st_split_parameters[0], Integer.parseInt(st_split_parameters[1]), Integer.parseInt(st_split_parameters[2]));
+						this.topWall.setSize(Integer.parseInt(st_split_parameters[3]), Integer.parseInt(st_split_parameters[4]));
+						break;
+					case "BottomWall":
+						this.botWall = new GImage(st_split_parameters[0], Integer.parseInt(st_split_parameters[1]), Integer.parseInt(st_split_parameters[2]));
+						this.botWall.setSize(Integer.parseInt(st_split_parameters[3]), Integer.parseInt(st_split_parameters[4]));
+						break;
+					case "LeftWall":
+						this.leftWall = new GImage(st_split_parameters[0], Integer.parseInt(st_split_parameters[1]), Integer.parseInt(st_split_parameters[2]));
+						this.leftWall.setSize(Integer.parseInt(st_split_parameters[3]), Integer.parseInt(st_split_parameters[4]));
+						break;
+					case "RightWall":
+						this.rightWall = new GImage(st_split_parameters[0], Integer.parseInt(st_split_parameters[1]), Integer.parseInt(st_split_parameters[2]));
+						this.rightWall.setSize(Integer.parseInt(st_split_parameters[3]), Integer.parseInt(st_split_parameters[4]));
+						break;
+					case "InStairs":
+						this.inStairs = new GImage(st_split_parameters[0], Integer.parseInt(st_split_parameters[1]), Integer.parseInt(st_split_parameters[2]));
+						this.inStairs.setSize(Integer.parseInt(st_split_parameters[3]), Integer.parseInt(st_split_parameters[4]));
+						break;
+					case "OutStairs":
+						this.outStairs = new GImage(st_split_parameters[0], Integer.parseInt(st_split_parameters[1]), Integer.parseInt(st_split_parameters[2]));
+						this.outStairs.setSize(Integer.parseInt(st_split_parameters[3]), Integer.parseInt(st_split_parameters[4]));
+						break;
+					case "Enemy":
+						// Checks to see what kind of enemy it is
+						EnemyType new_enemy_type = EnemyType.SLIME;
+						switch (st_split_parameters[0]) {
+							case "Slime":
+								new_enemy_type = EnemyType.SLIME;
+								break;
+							case "Goblin":
+								new_enemy_type = EnemyType.GOBLIN;
+								break;
+							case "Boss":
+								new_enemy_type = EnemyType.BOSS;
+								break;
+							case "Chest":
+								new_enemy_type = EnemyType.CHEST;
+								break;
+							case "Deadenemy":
+								new_enemy_type = EnemyType.DEADENEMY;
+								break;
+							default:
+								System.out.println("Invalid Enemy Type: " + st_split_parameters[0]);
+								System.out.println("Now Exiting Program");
+								System.exit(-1);
+								break;
+						}
+						System.out.println("Bruh: " + st_split_parameters.length);
+						this.enemies[enemy_index] = new Enemy(new_enemy_type, Integer.parseInt(st_split_parameters[1]), Integer.parseInt(st_split_parameters[2]), Boolean.parseBoolean(st_split_parameters[3]), Integer.parseInt(st_split_parameters[4]), Integer.parseInt(st_split_parameters[5]), Boolean.parseBoolean(st_split_parameters[6]));
+						enemy_index++;
+						break;
+					case "Floor":
+						this.floor = new GImage(st_split_parameters[0], Integer.parseInt(st_split_parameters[1]), Integer.parseInt(st_split_parameters[2]));
+						this.floor.setSize(Integer.parseInt(st_split_parameters[3]), Integer.parseInt(st_split_parameters[4]));
+						break;
+					default:
+						System.out.println("Category: " + st_split[0] + " does not correspond to a set up category");
+						System.out.println("Now Exiting Program");
+						System.exit(-1);
+				}
+				
+
+			 }
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("hello1");
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("hello2");
+			e.printStackTrace();
+		}
 		
 		this.program = app;
-		/*
-		Add parameter to get the file name
-		Open Textfile 
-		While parsing through the text file:
-			Read the first phrase and see what category it is trying to write to
-				If it is an enemy, add to the enemies section
-				If it is the stairs image, add it as a parameter
-				Repeat for walls, floor, and the main character 
-		Close textfile
-		Create the First level using all of the information from above
-		*/
 	}
 
 	
@@ -106,8 +204,10 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 	
 	public void generateEnemies() {
 		for(Enemy enemy : enemies) {
-			enemyInput = new CharacterInteraction(null, enemy);
-			program.add(enemy.getEnemyImage());
+			if (enemy != null) {
+				enemyInput = new CharacterInteraction(null, enemy);
+				program.add(enemy.getEnemyImage());
+			}
 		}
 	}
 	
