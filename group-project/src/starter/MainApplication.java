@@ -28,7 +28,6 @@ public class MainApplication extends GraphicsApplication {
 	}
 
 	public void switchToMenu() {
-//		startRoom = new FirstLevel(this);
 		switchToScreen(menu);
 	}
 
