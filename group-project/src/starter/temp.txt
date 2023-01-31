@@ -1,0 +1,13 @@
+Floor: floor.png, 0, 0, 800, 600
+Top Wall: wall.png, 0, 0, 800, 50
+Bottom Wall: wall.png, 0, 550, 800, 50
+Left Wall: wall.png, 0, 0, 25, 600
+Right Wall: wall.png, 775, 0, 25, 600
+In Stairs: stairs.png, 50, 250, -50, 100
+Out Stairs: stairs.png, 800, 250, 50, 100
+Main Character: hero.png, 50, 275, 10, 10, 100
+Enemy: Slime, 10, 5, true, 250, 100, true
+Enemy: Slime, 10, 5, true, 450, 375, true
+Enemy: Goblin, 15, 10, false, 50, 100, false
+Enemy: Goblin, 15, 10, false, 150, 475, false
+Enemy: Boss, 20, 20, true, 600, 100, false
