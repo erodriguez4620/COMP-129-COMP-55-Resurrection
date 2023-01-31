@@ -14,6 +14,8 @@ import acm.graphics.GLabel;
 import acm.graphics.GObject;
 import acm.graphics.GRect;
 
+import java.io.*;
+
 public class FirstLevel extends GraphicsPane implements ActionListener {
 	private MainApplication program; // you will use program to get access to
 										// all of the GraphicsProgram calls
@@ -54,6 +56,17 @@ public class FirstLevel extends GraphicsPane implements ActionListener {
 		this.hero = hero;
 		
 		this.program = app;
+		/*
+		Add parameter to get the file name
+		Open Textfile 
+		While parsing through the text file:
+			Read the first phrase and see what category it is trying to write to
+				If it is an enemy, add to the enemies section
+				If it is the stairs image, add it as a parameter
+				Repeat for walls, floor, and the main character 
+		Close textfile
+		Create the First level using all of the information from above
+		*/
 	}
 
 	
